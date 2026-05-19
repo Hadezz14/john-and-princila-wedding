@@ -1,574 +1,916 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>John & Princila — 25 August 2026</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>John & Princila — 25 August 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#b8d8e8;--blue-lt:#dceef6;--blue-dk:#7ab0c8;
+  --pink:#f2c4ce;--pink-lt:#fce9ec;--pink-dk:#c8778a;
+  --sage:#b5c5a5;--sage-dk:#8a9e7a;
+  --cream:#fdfaf8;--bg:#eee8e0;
+  --text:#3d3535;--muted:#9a8878;
+  --script:'Great Vibes',cursive;
+  --serif:'Cormorant Garamond',serif;
+  --sans:'Jost',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:var(--bg);
+  color:var(--text);
+  font-size:15px;
+  line-height:1.7;
+  overflow-x:hidden;
+}
 
-    :root {
-      --blue:     #b8d8e8;
-      --blue-lt:  #dceef6;
-      --blue-dk:  #7ab0c8;
-      --pink:     #f2c4ce;
-      --pink-lt:  #fce9ec;
-      --pink-dk:  #d98fa0;
-      --cream:    #fdfaf8;
-      --text:     #3d3535;
-      --muted:    #8a7878;
-      --serif:    'Cormorant Garamond', serif;
-      --sans:     'Jost', sans-serif;
-    }
+/* ── PAGE BACKGROUND FLOWERS (fixed, outside card) ── */
+.bg-layer{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  display:flex;justify-content:center;
+}
+.bg-layer svg{position:absolute}
+.bg-tl{top:-40px;left:calc(50% - 320px);width:260px;opacity:.85}
+.bg-tr{top:-20px;right:calc(50% - 340px);width:220px;opacity:.8}
+.bg-bl{bottom:40px;left:calc(50% - 300px);width:200px;opacity:.7}
+.bg-br{bottom:0;right:calc(50% - 320px);width:240px;opacity:.75}
+.bg-ml{top:45%;left:calc(50% - 290px);width:140px;opacity:.5}
+.bg-mr{top:55%;right:calc(50% - 290px);width:150px;opacity:.5}
 
-    html { scroll-behavior: smooth; }
+/* ── CARD ── */
+.card{
+  position:relative;z-index:1;
+  max-width:480px;margin:0 auto;
+  background:var(--cream);
+  box-shadow:0 8px 60px rgba(0,0,0,.12);
+  overflow:hidden;
+}
 
-    body {
-      font-family: var(--sans);
-      background: var(--cream);
-      color: var(--text);
-      font-size: 16px;
-      line-height: 1.7;
-    }
+/* ── HERO ── */
+.hero{
+  padding:0 2rem 2.5rem;
+  text-align:center;
+  position:relative;
+}
+.hero-flowers{
+  position:relative;height:160px;margin:0 -2rem;
+  overflow:hidden;
+}
+.hero-flowers svg{
+  position:absolute;top:-30px;
+}
+.hf-left{left:-10px}
+.hf-right{right:-10px;transform:scaleX(-1)}
+.hf-center{left:50%;transform:translateX(-50%)}
 
-    /* ── NAV ── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: center;
-      gap: 2.5rem;
-      padding: 1rem 2rem;
-      background: rgba(253,250,248,.9);
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid var(--blue-lt);
-      font-size: .75rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
+.hero-date{
+  font-family:var(--script);
+  font-size:2rem;color:var(--pink-dk);
+  margin-bottom:2rem;
+  display:block;
+}
 
-    nav a {
-      text-decoration: none;
-      color: var(--muted);
-      transition: color .2s;
-    }
-    nav a:hover { color: var(--pink-dk); }
+/* Oval photo frame */
+.photo-wrap{
+  width:190px;height:250px;
+  margin:0 auto 2rem;
+  position:relative;
+}
+.photo-wrap::before,.photo-wrap::after{
+  content:'';position:absolute;
+  border-radius:50%/40%;
+  pointer-events:none;
+}
+.photo-wrap::before{
+  inset:-10px;
+  border:1.5px dashed var(--pink);
+  opacity:.7;
+}
+.photo-wrap::after{
+  inset:-20px;
+  border:1px solid var(--blue);
+  opacity:.45;
+}
+.photo-oval{
+  width:100%;height:100%;
+  border-radius:50%/40%;
+  overflow:hidden;
+  border:2px solid var(--pink-lt);
+  background:linear-gradient(160deg,var(--pink-lt),var(--blue-lt));
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:.4rem;
+  position:relative;
+}
+.photo-oval img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+}
+.photo-oval .ph-text{
+  font-size:.7rem;letter-spacing:.08em;
+  color:var(--muted);text-align:center;
+  padding:0 1rem;line-height:1.5;
+}
+.photo-oval svg{opacity:.3}
 
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 6rem 2rem 4rem;
-      background: linear-gradient(160deg, var(--blue-lt) 0%, var(--cream) 45%, var(--pink-lt) 100%);
-      position: relative;
-      overflow: hidden;
-    }
+/* Lace dots around oval */
+.lace-ring{
+  position:absolute;inset:-6px;
+  border-radius:50%/40%;
+  background:repeating-conic-gradient(var(--pink) 0deg 3deg, transparent 3deg 18deg);
+  opacity:.18;
+  pointer-events:none;
+}
 
-    #hero::before, #hero::after {
-      content: '';
-      position: absolute;
-      border-radius: 50%;
-      opacity: .25;
-    }
-    #hero::before {
-      width: 500px; height: 500px;
-      background: var(--blue);
-      top: -150px; left: -150px;
-    }
-    #hero::after {
-      width: 400px; height: 400px;
-      background: var(--pink);
-      bottom: -100px; right: -100px;
-    }
+.couple-names{
+  font-family:var(--script);
+  font-size:3.6rem;
+  line-height:1.05;
+  color:var(--text);
+  margin-bottom:.3rem;
+}
+.couple-names .amp{color:var(--pink-dk)}
 
-    .hero-label {
-      font-size: .72rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--pink-dk);
-      margin-bottom: 1.2rem;
-    }
+.hero-sub{
+  font-size:.72rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted);
+  margin-bottom:1.8rem;
+}
 
-    h1 {
-      font-family: var(--serif);
-      font-size: clamp(3.5rem, 10vw, 7rem);
-      font-weight: 300;
-      line-height: 1.05;
-      letter-spacing: .02em;
-      color: var(--text);
-    }
+/* ── VERSE BAND ── */
+.verse-band{
+  background:var(--blue-lt);
+  padding:1.6rem 2rem;
+  text-align:center;
+}
+.verse-band blockquote{
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:1.08rem;
+  color:var(--text);
+  line-height:1.75;
+  max-width:340px;margin:0 auto;
+}
+.verse-band cite{
+  display:block;margin-top:.5rem;
+  font-style:normal;
+  font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--blue-dk);
+}
 
-    h1 span { color: var(--blue-dk); }
+/* ── CALENDAR ── */
+.cal-section{
+  padding:2.5rem 2rem 2rem;
+  text-align:center;
+}
+.cal-tag{
+  font-size:.68rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);
+  display:block;margin-bottom:1.2rem;
+}
+.cal-row{
+  display:flex;justify-content:center;
+  border-top:1px solid var(--blue-lt);
+  border-bottom:1px solid var(--blue-lt);
+  max-width:280px;margin:0 auto;
+}
+.cal-day{
+  flex:1;padding:.9rem .5rem;
+  text-align:center;
+  border-right:1px solid var(--blue-lt);
+  position:relative;
+}
+.cal-day:last-child{border-right:none}
+.cal-day .dn{
+  font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted);
+  display:block;margin-bottom:.2rem;
+}
+.cal-day .dd{
+  font-family:var(--serif);
+  font-size:2.2rem;font-weight:300;
+  display:block;line-height:1;
+}
+.cal-day.active .dd{color:var(--pink-dk)}
+.date-ring{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:62px;height:62px;
+  pointer-events:none;
+}
 
-    .hero-date {
-      margin-top: 1.4rem;
-      font-size: .85rem;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
+/* ── TICKER ── */
+.ticker{
+  overflow:hidden;
+  background:var(--blue-lt);
+  padding:.65rem 0;
+  white-space:nowrap;
+}
+.ticker-inner{
+  display:inline-block;
+  animation:tick 20s linear infinite;
+}
+.ticker-inner span{
+  font-size:.72rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--blue-dk);
+  padding:0 2.5rem;
+}
+@keyframes tick{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
 
-    .verse {
-      margin-top: 2.5rem;
-      max-width: 420px;
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.1rem;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-    .verse cite {
-      display: block;
-      margin-top: .4rem;
-      font-style: normal;
-      font-size: .78rem;
-      letter-spacing: .1em;
-      color: var(--pink-dk);
-    }
+/* ── SECTION HEADING ── */
+.sec-script{
+  font-family:var(--script);
+  font-size:2.6rem;color:var(--pink-dk);
+  text-align:center;margin-bottom:.4rem;
+}
+.floral-rule{
+  text-align:center;
+  color:var(--pink);font-size:1rem;
+  letter-spacing:.5em;margin-bottom:1.8rem;
+}
 
-    .scroll-cue {
-      position: absolute;
-      bottom: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .4rem;
-      color: var(--muted);
-      font-size: .7rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      animation: bounce 2s infinite;
-    }
-    .scroll-cue svg { width: 18px; }
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(6px); }
-    }
+/* ── VENUE ── */
+.venue-section{padding:2.5rem 2rem 2rem;text-align:center}
+.venue-address{
+  font-size:.82rem;letter-spacing:.08em;
+  line-height:2;color:var(--muted);
+  text-transform:uppercase;margin-bottom:1rem;
+}
+.venue-sketch{
+  margin:1rem auto 1.2rem;
+  opacity:.45;
+  max-width:300px;
+  display:block;
+}
+.map-btn{
+  display:inline-block;
+  padding:.45rem 1.4rem;
+  border:1px solid var(--muted);
+  border-radius:20px;
+  font-size:.7rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);
+  text-decoration:none;transition:all .2s;
+}
+.map-btn:hover{background:var(--pink-lt);border-color:var(--pink-dk);color:var(--pink-dk)}
 
-    /* ── SECTIONS ── */
-    section { padding: 6rem 2rem; }
+/* ── TIMELINE ── */
+.timeline-section{
+  padding:2.5rem 2rem;
+  background:var(--pink-lt);
+}
+.tl-item{
+  display:flex;align-items:flex-start;
+  gap:1rem;margin-bottom:1.4rem;
+}
+.tl-item:last-child{margin-bottom:0}
+.tl-icon{
+  width:40px;height:40px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:white;border-radius:50%;
+  box-shadow:0 1px 6px rgba(0,0,0,.06);
+}
+.tl-icon svg{width:20px;height:20px}
+.tl-time{
+  font-size:.7rem;letter-spacing:.1em;
+  color:var(--pink-dk);display:block;
+  text-transform:uppercase;
+}
+.tl-event{
+  font-family:var(--serif);font-size:1.1rem;
+  color:var(--text);
+}
 
-    .section-inner {
-      max-width: 820px;
-      margin: 0 auto;
-    }
+/* ── BOTANICAL LINE ART ── */
+.botanical-art{
+  padding:1rem 0 0;
+  text-align:center;
+  overflow:hidden;
+}
+.botanical-art svg{
+  width:100%;max-height:180px;
+}
 
-    .section-tag {
-      display: block;
-      text-align: center;
-      font-size: .72rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--blue-dk);
-      margin-bottom: .6rem;
-    }
+/* ── DRESS CODE ── */
+.dresscode-section{padding:2rem 2rem 2.5rem;text-align:center}
+.swatches{
+  display:flex;justify-content:center;gap:1rem;
+  margin:1.2rem 0;
+}
+.sw{
+  width:52px;height:22px;border-radius:30px;
+  box-shadow:0 1px 5px rgba(0,0,0,.1);
+}
+.dresscode-note{
+  font-family:var(--serif);font-style:italic;
+  font-size:1rem;color:var(--muted);
+  line-height:1.8;max-width:320px;margin:0 auto;
+}
 
-    h2 {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 300;
-      text-align: center;
-      margin-bottom: 3rem;
-    }
+/* ── FAMILIES ── */
+.families-section{
+  padding:2.5rem 2rem;
+  background:var(--blue-lt);
+  text-align:center;
+}
+.fam-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1.5rem;margin-top:1rem;
+}
+.fam-card{
+  background:white;border-radius:10px;
+  padding:1.4rem 1rem;
+}
+.fam-card h4{
+  font-family:var(--script);font-size:1.6rem;
+  color:var(--blue-dk);margin-bottom:.8rem;
+}
+.fam-member{margin-bottom:.5rem;font-size:.82rem;line-height:1.4}
+.fam-role{
+  font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--pink-dk);
+  display:block;
+}
 
-    /* ── DETAILS ── */
-    #details { background: var(--cream); }
+/* ── WEDDING PARTY ── */
+.party-section{padding:2.5rem 2rem;text-align:center}
+.party-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem}
+.party-col{
+  border-radius:10px;padding:1.4rem 1rem;
+}
+.party-col.grooms{background:var(--blue-lt)}
+.party-col.brides{background:var(--pink-lt)}
+.party-col h4{
+  font-family:var(--serif);font-size:1rem;
+  font-weight:400;letter-spacing:.1em;
+  margin-bottom:.6rem;padding-bottom:.4rem;
+}
+.party-col.grooms h4{color:var(--blue-dk);border-bottom:1px solid var(--blue)}
+.party-col.brides h4{color:var(--pink-dk);border-bottom:1px solid var(--pink)}
+.party-col p{font-size:.8rem;color:var(--muted);font-style:italic}
 
-    .details-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
-    @media (max-width: 600px) { .details-grid { grid-template-columns: 1fr; } }
+/* ── RSVP ── */
+.rsvp-section{padding:2.5rem 2rem;background:var(--pink-lt)}
+form{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem}
+.field{display:flex;flex-direction:column;gap:.32rem}
+label{font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+input,select,textarea{
+  font-family:var(--sans);font-size:.9rem;
+  padding:.65rem .9rem;
+  border:1px solid var(--pink);border-radius:6px;
+  background:white;color:var(--text);outline:none;width:100%;
+  transition:border-color .2s;
+}
+input:focus,select:focus,textarea:focus{border-color:var(--pink-dk)}
+textarea{min-height:80px;resize:vertical}
+.radio-group{display:flex;gap:1.4rem;flex-wrap:wrap}
+.rl{display:flex;align-items:center;gap:.4rem;font-size:.85rem;cursor:pointer}
+.rl input{width:auto;accent-color:var(--pink-dk)}
+.btn{
+  margin-top:.5rem;padding:.85rem 2.2rem;
+  background:linear-gradient(135deg,var(--blue-dk),var(--pink-dk));
+  color:white;border:none;border-radius:50px;
+  font-family:var(--sans);font-size:.75rem;
+  letter-spacing:.15em;text-transform:uppercase;
+  cursor:pointer;align-self:center;
+  transition:opacity .2s,transform .15s;
+}
+.btn:hover{opacity:.85;transform:translateY(-1px)}
+#rsvp-thanks{display:none;text-align:center;padding:2rem 0}
+#rsvp-thanks .ti{font-size:2rem;margin-bottom:.8rem}
+#rsvp-thanks h3{font-family:var(--script);font-size:2rem;color:var(--pink-dk);margin-bottom:.3rem}
+#rsvp-thanks p{color:var(--muted);font-size:.85rem}
 
-    .detail-card {
-      border: 1px solid var(--blue-lt);
-      border-radius: 12px;
-      padding: 2rem;
-      text-align: center;
-      background: white;
-    }
+/* ── FOOTER ── */
+footer{
+  padding:2rem;text-align:center;
+  border-top:1px solid var(--pink-lt);
+}
+.f-names{
+  font-family:var(--script);font-size:2rem;
+  color:var(--pink-dk);display:block;margin-bottom:.3rem;
+}
+footer p{font-size:.75rem;color:var(--muted);letter-spacing:.06em}
 
-    .detail-card .icon {
-      font-size: 1.6rem;
-      margin-bottom: .8rem;
-    }
-
-    .detail-card h3 {
-      font-family: var(--serif);
-      font-size: 1.25rem;
-      font-weight: 400;
-      margin-bottom: .5rem;
-    }
-
-    .detail-card p {
-      font-size: .88rem;
-      color: var(--muted);
-    }
-
-    /* ── FAMILIES ── */
-    #families { background: linear-gradient(135deg, var(--blue-lt), var(--pink-lt)); }
-
-    .families-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
-    @media (max-width: 600px) { .families-grid { grid-template-columns: 1fr; } }
-
-    .family-card {
-      background: white;
-      border-radius: 14px;
-      padding: 2.2rem;
-      text-align: center;
-      box-shadow: 0 2px 20px rgba(0,0,0,.05);
-    }
-
-    .family-card h3 {
-      font-family: var(--serif);
-      font-size: 1.5rem;
-      font-weight: 400;
-      margin-bottom: 1.2rem;
-      color: var(--blue-dk);
-    }
-
-    .family-member {
-      margin-bottom: .5rem;
-      font-size: .9rem;
-    }
-    .family-member .role {
-      font-size: .72rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--pink-dk);
-    }
-
-    /* ── WEDDING PARTY ── */
-    #party { background: var(--cream); }
-
-    .party-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
-    @media (max-width: 600px) { .party-grid { grid-template-columns: 1fr; } }
-
-    .party-card {
-      border-radius: 14px;
-      padding: 2.2rem;
-      text-align: center;
-    }
-    .party-card.grooms { background: var(--blue-lt); }
-    .party-card.brides { background: var(--pink-lt); }
-
-    .party-card h3 {
-      font-family: var(--serif);
-      font-size: 1.4rem;
-      font-weight: 400;
-      margin-bottom: 1rem;
-    }
-    .party-card.grooms h3 { color: var(--blue-dk); }
-    .party-card.brides h3 { color: var(--pink-dk); }
-
-    .party-card p {
-      font-size: .85rem;
-      color: var(--muted);
-      font-style: italic;
-    }
-
-    .dress-code {
-      margin-top: 3rem;
-      text-align: center;
-      padding: 1.6rem 2rem;
-      border: 1px dashed var(--pink-dk);
-      border-radius: 12px;
-      background: var(--pink-lt);
-      font-size: .85rem;
-      color: var(--muted);
-    }
-    .dress-code strong {
-      display: block;
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      color: var(--text);
-      margin-bottom: .3rem;
-    }
-
-    /* ── RSVP ── */
-    #rsvp { background: linear-gradient(160deg, var(--pink-lt) 0%, var(--cream) 60%, var(--blue-lt) 100%); }
-
-    form {
-      max-width: 560px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: .4rem;
-    }
-
-    label {
-      font-size: .75rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    input, select, textarea {
-      font-family: var(--sans);
-      font-size: .95rem;
-      padding: .75rem 1rem;
-      border: 1px solid var(--blue-lt);
-      border-radius: 8px;
-      background: white;
-      color: var(--text);
-      transition: border-color .2s, box-shadow .2s;
-      outline: none;
-      width: 100%;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--blue-dk);
-      box-shadow: 0 0 0 3px rgba(122,176,200,.15);
-    }
-
-    textarea { resize: vertical; min-height: 90px; }
-
-    .radio-group {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .radio-option {
-      display: flex;
-      align-items: center;
-      gap: .5rem;
-      cursor: pointer;
-      font-size: .9rem;
-    }
-
-    .radio-option input[type="radio"] {
-      width: auto;
-      accent-color: var(--pink-dk);
-    }
-
-    .btn {
-      margin-top: .5rem;
-      padding: .9rem 2.5rem;
-      background: linear-gradient(135deg, var(--blue-dk), var(--pink-dk));
-      color: white;
-      border: none;
-      border-radius: 50px;
-      font-family: var(--sans);
-      font-size: .85rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      cursor: pointer;
-      align-self: center;
-      transition: opacity .2s, transform .15s;
-    }
-    .btn:hover { opacity: .88; transform: translateY(-1px); }
-    .btn:active { transform: translateY(0); }
-
-    #rsvp-success {
-      display: none;
-      text-align: center;
-      padding: 3rem;
-    }
-    #rsvp-success .check { font-size: 2.5rem; margin-bottom: 1rem; }
-    #rsvp-success h3 {
-      font-family: var(--serif);
-      font-size: 1.8rem;
-      font-weight: 300;
-      margin-bottom: .5rem;
-    }
-    #rsvp-success p { color: var(--muted); font-size: .9rem; }
-
-    /* ── FOOTER ── */
-    footer {
-      text-align: center;
-      padding: 2.5rem 1rem;
-      border-top: 1px solid var(--blue-lt);
-      font-size: .78rem;
-      color: var(--muted);
-      letter-spacing: .05em;
-    }
-
-    footer span {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--pink-dk);
-    }
-
-    /* ── DIVIDER ── */
-    .divider {
-      text-align: center;
-      color: var(--pink);
-      font-size: 1.2rem;
-      margin: 0 auto 2.5rem;
-      letter-spacing: .6em;
-    }
-  </style>
+@media(max-width:480px){
+  .bg-tl,.bg-tr,.bg-bl,.bg-br,.bg-ml,.bg-mr{display:none}
+  .fam-grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#details">Details</a>
-  <a href="#families">Families</a>
-  <a href="#party">Wedding Party</a>
-  <a href="#rsvp">RSVP</a>
-</nav>
+<!-- BACKGROUND FLOWERS -->
+<div class="bg-layer" aria-hidden="true">
+  <!-- top-left large peony -->
+  <svg class="bg-tl" viewBox="0 0 220 260" fill="none">
+    <path d="M110 220 Q106 170 110 110" stroke="#b5c5a5" stroke-width="2.5" fill="none"/>
+    <path d="M108 185 Q78 170 72 148 Q94 162 108 185Z" fill="#b5c5a5" opacity=".7"/>
+    <path d="M109 200 Q140 185 144 163 Q124 178 109 200Z" fill="#b5c5a5" opacity=".7"/>
+    <g transform="translate(110,110)">
+      <path d="M0,0 C-16,-10 -22,-48 0,-58 C22,-48 16,-10 0,0Z" fill="#f2c4ce" opacity=".75" transform="rotate(0)"/>
+      <path d="M0,0 C-16,-10 -22,-48 0,-58 C22,-48 16,-10 0,0Z" fill="#f2c4ce" opacity=".75" transform="rotate(45)"/>
+      <path d="M0,0 C-16,-10 -22,-48 0,-58 C22,-48 16,-10 0,0Z" fill="#f2c4ce" opacity=".75" transform="rotate(90)"/>
+      <path d="M0,0 C-16,-10 -22,-48 0,-58 C22,-48 16,-10 0,0Z" fill="#f2c4ce" opacity=".75" transform="rotate(135)"/>
+      <path d="M0,0 C-16,-10 -22,-48 0,-58 C22,-48 16,-10 0,0Z" fill="#f2c4ce" opacity=".75" transform="rotate(180)"/>
+      <path d="M0,0 C-16,-10 -22,-48 0,-58 C22,-48 16,-10 0,0Z" fill="#f2c4ce" opacity=".75" transform="rotate(225)"/>
+      <path d="M0,0 C-16,-10 -22,-48 0,-58 C22,-48 16,-10 0,0Z" fill="#f2c4ce" opacity=".75" transform="rotate(270)"/>
+      <path d="M0,0 C-16,-10 -22,-48 0,-58 C22,-48 16,-10 0,0Z" fill="#f2c4ce" opacity=".75" transform="rotate(315)"/>
+      <path d="M0,0 C-10,-8 -14,-32 0,-40 C14,-32 10,-8 0,0Z" fill="#e8a0b0" opacity=".85" transform="rotate(22.5)"/>
+      <path d="M0,0 C-10,-8 -14,-32 0,-40 C14,-32 10,-8 0,0Z" fill="#e8a0b0" opacity=".85" transform="rotate(67.5)"/>
+      <path d="M0,0 C-10,-8 -14,-32 0,-40 C14,-32 10,-8 0,0Z" fill="#e8a0b0" opacity=".85" transform="rotate(112.5)"/>
+      <path d="M0,0 C-10,-8 -14,-32 0,-40 C14,-32 10,-8 0,0Z" fill="#e8a0b0" opacity=".85" transform="rotate(157.5)"/>
+      <path d="M0,0 C-10,-8 -14,-32 0,-40 C14,-32 10,-8 0,0Z" fill="#e8a0b0" opacity=".85" transform="rotate(202.5)"/>
+      <path d="M0,0 C-10,-8 -14,-32 0,-40 C14,-32 10,-8 0,0Z" fill="#e8a0b0" opacity=".85" transform="rotate(247.5)"/>
+      <path d="M0,0 C-10,-8 -14,-32 0,-40 C14,-32 10,-8 0,0Z" fill="#e8a0b0" opacity=".85" transform="rotate(292.5)"/>
+      <path d="M0,0 C-10,-8 -14,-32 0,-40 C14,-32 10,-8 0,0Z" fill="#e8a0b0" opacity=".85" transform="rotate(337.5)"/>
+      <circle r="14" fill="#fce9ec"/>
+      <circle r="7" fill="#e8a0b0"/>
+    </g>
+    <!-- small bud -->
+    <g transform="translate(170,50)">
+      <path d="M0,0 C-8,-5 -10,-22 0,-28 C10,-22 8,-5 0,0Z" fill="#f2c4ce" opacity=".8" transform="rotate(0)"/>
+      <path d="M0,0 C-8,-5 -10,-22 0,-28 C10,-22 8,-5 0,0Z" fill="#f2c4ce" opacity=".8" transform="rotate(90)"/>
+      <path d="M0,0 C-8,-5 -10,-22 0,-28 C10,-22 8,-5 0,0Z" fill="#f2c4ce" opacity=".8" transform="rotate(180)"/>
+      <path d="M0,0 C-8,-5 -10,-22 0,-28 C10,-22 8,-5 0,0Z" fill="#f2c4ce" opacity=".8" transform="rotate(270)"/>
+      <circle r="7" fill="#fce9ec"/>
+      <circle r="3" fill="#e8a0b0"/>
+    </g>
+    <path d="M170 78 Q168 90 165 110" stroke="#b5c5a5" stroke-width="1.5" fill="none"/>
+    <path d="M167 95 Q150 88 148 75 Q160 83 167 95Z" fill="#b5c5a5" opacity=".7"/>
+  </svg>
 
-<!-- HERO -->
-<section id="hero">
-  <p class="hero-label">We're getting married</p>
-  <h1>John<br /><span>&</span><br />Princila</h1>
-  <p class="hero-date">25 · August · 2026</p>
-  <blockquote class="verse">
-    "What God has joined together, let no one separate."
-    <cite>— Mark 10:9</cite>
-  </blockquote>
-  <div class="scroll-cue">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-      <path d="M12 5v14M5 12l7 7 7-7"/>
+  <!-- top-right (mirrored) -->
+  <svg class="bg-tr" viewBox="0 0 220 260" fill="none" style="transform:scaleX(-1)">
+    <path d="M110 220 Q106 170 110 110" stroke="#b5c5a5" stroke-width="2.5" fill="none"/>
+    <path d="M108 185 Q78 170 72 148 Q94 162 108 185Z" fill="#b5c5a5" opacity=".7"/>
+    <g transform="translate(110,110)">
+      <path d="M0,0 C-16,-10 -22,-48 0,-58 C22,-48 16,-10 0,0Z" fill="#b8d8e8" opacity=".75" transform="rotate(0)"/>
+      <path d="M0,0 C-16,-10 -22,-48 0,-58 C22,-48 16,-10 0,0Z" fill="#b8d8e8" opacity=".75" transform="rotate(45)"/>
+      <path d="M0,0 C-16,-10 -22,-48 0,-58 C22,-48 16,-10 0,0Z" fill="#b8d8e8" opacity=".75" transform="rotate(90)"/>
+      <path d="M0,0 C-16,-10 -22,-48 0,-58 C22,-48 16,-10 0,0Z" fill="#b8d8e8" opacity=".75" transform="rotate(135)"/>
+      <path d="M0,0 C-16,-10 -22,-48 0,-58 C22,-48 16,-10 0,0Z" fill="#b8d8e8" opacity=".75" transform="rotate(180)"/>
+      <path d="M0,0 C-16,-10 -22,-48 0,-58 C22,-48 16,-10 0,0Z" fill="#b8d8e8" opacity=".75" transform="rotate(225)"/>
+      <path d="M0,0 C-16,-10 -22,-48 0,-58 C22,-48 16,-10 0,0Z" fill="#b8d8e8" opacity=".75" transform="rotate(270)"/>
+      <path d="M0,0 C-16,-10 -22,-48 0,-58 C22,-48 16,-10 0,0Z" fill="#b8d8e8" opacity=".75" transform="rotate(315)"/>
+      <path d="M0,0 C-10,-8 -14,-32 0,-40 C14,-32 10,-8 0,0Z" fill="#7ab0c8" opacity=".8" transform="rotate(22.5)"/>
+      <path d="M0,0 C-10,-8 -14,-32 0,-40 C14,-32 10,-8 0,0Z" fill="#7ab0c8" opacity=".8" transform="rotate(67.5)"/>
+      <path d="M0,0 C-10,-8 -14,-32 0,-40 C14,-32 10,-8 0,0Z" fill="#7ab0c8" opacity=".8" transform="rotate(112.5)"/>
+      <path d="M0,0 C-10,-8 -14,-32 0,-40 C14,-32 10,-8 0,0Z" fill="#7ab0c8" opacity=".8" transform="rotate(157.5)"/>
+      <path d="M0,0 C-10,-8 -14,-32 0,-40 C14,-32 10,-8 0,0Z" fill="#7ab0c8" opacity=".8" transform="rotate(202.5)"/>
+      <path d="M0,0 C-10,-8 -14,-32 0,-40 C14,-32 10,-8 0,0Z" fill="#7ab0c8" opacity=".8" transform="rotate(247.5)"/>
+      <path d="M0,0 C-10,-8 -14,-32 0,-40 C14,-32 10,-8 0,0Z" fill="#7ab0c8" opacity=".8" transform="rotate(292.5)"/>
+      <path d="M0,0 C-10,-8 -14,-32 0,-40 C14,-32 10,-8 0,0Z" fill="#7ab0c8" opacity=".8" transform="rotate(337.5)"/>
+      <circle r="14" fill="#dceef6"/>
+      <circle r="7" fill="#7ab0c8"/>
+    </g>
+  </svg>
+
+  <!-- mid-left small -->
+  <svg class="bg-ml" viewBox="0 0 140 160" fill="none">
+    <path d="M70 155 Q68 120 70 80" stroke="#b5c5a5" stroke-width="2" fill="none"/>
+    <path d="M69 130 Q50 120 48 105 Q63 116 69 130Z" fill="#b5c5a5" opacity=".6"/>
+    <g transform="translate(70,80)">
+      <path d="M0,0 C-12,-7 -16,-36 0,-44 C16,-36 12,-7 0,0Z" fill="#f2c4ce" opacity=".7" transform="rotate(0)"/>
+      <path d="M0,0 C-12,-7 -16,-36 0,-44 C16,-36 12,-7 0,0Z" fill="#f2c4ce" opacity=".7" transform="rotate(60)"/>
+      <path d="M0,0 C-12,-7 -16,-36 0,-44 C16,-36 12,-7 0,0Z" fill="#f2c4ce" opacity=".7" transform="rotate(120)"/>
+      <path d="M0,0 C-12,-7 -16,-36 0,-44 C16,-36 12,-7 0,0Z" fill="#f2c4ce" opacity=".7" transform="rotate(180)"/>
+      <path d="M0,0 C-12,-7 -16,-36 0,-44 C16,-36 12,-7 0,0Z" fill="#f2c4ce" opacity=".7" transform="rotate(240)"/>
+      <path d="M0,0 C-12,-7 -16,-36 0,-44 C16,-36 12,-7 0,0Z" fill="#f2c4ce" opacity=".7" transform="rotate(300)"/>
+      <circle r="11" fill="#fce9ec"/>
+      <circle r="5" fill="#e8a0b0"/>
+    </g>
+  </svg>
+
+  <!-- mid-right small blue -->
+  <svg class="bg-mr" viewBox="0 0 140 160" fill="none">
+    <path d="M70 155 Q68 120 70 80" stroke="#b5c5a5" stroke-width="2" fill="none"/>
+    <path d="M70 135 Q90 123 93 108 Q78 120 70 135Z" fill="#b5c5a5" opacity=".6"/>
+    <g transform="translate(70,80)">
+      <path d="M0,0 C-12,-7 -16,-36 0,-44 C16,-36 12,-7 0,0Z" fill="#b8d8e8" opacity=".75" transform="rotate(0)"/>
+      <path d="M0,0 C-12,-7 -16,-36 0,-44 C16,-36 12,-7 0,0Z" fill="#b8d8e8" opacity=".75" transform="rotate(60)"/>
+      <path d="M0,0 C-12,-7 -16,-36 0,-44 C16,-36 12,-7 0,0Z" fill="#b8d8e8" opacity=".75" transform="rotate(120)"/>
+      <path d="M0,0 C-12,-7 -16,-36 0,-44 C16,-36 12,-7 0,0Z" fill="#b8d8e8" opacity=".75" transform="rotate(180)"/>
+      <path d="M0,0 C-12,-7 -16,-36 0,-44 C16,-36 12,-7 0,0Z" fill="#b8d8e8" opacity=".75" transform="rotate(240)"/>
+      <path d="M0,0 C-12,-7 -16,-36 0,-44 C16,-36 12,-7 0,0Z" fill="#b8d8e8" opacity=".75" transform="rotate(300)"/>
+      <circle r="11" fill="#dceef6"/>
+      <circle r="5" fill="#7ab0c8"/>
+    </g>
+  </svg>
+
+  <!-- bottom-left -->
+  <svg class="bg-bl" viewBox="0 0 200 200" fill="none">
+    <g transform="translate(100,100)">
+      <path d="M0,0 C-14,-9 -18,-42 0,-52 C18,-42 14,-9 0,0Z" fill="#f2c4ce" opacity=".7" transform="rotate(0)"/>
+      <path d="M0,0 C-14,-9 -18,-42 0,-52 C18,-42 14,-9 0,0Z" fill="#f2c4ce" opacity=".7" transform="rotate(72)"/>
+      <path d="M0,0 C-14,-9 -18,-42 0,-52 C18,-42 14,-9 0,0Z" fill="#f2c4ce" opacity=".7" transform="rotate(144)"/>
+      <path d="M0,0 C-14,-9 -18,-42 0,-52 C18,-42 14,-9 0,0Z" fill="#f2c4ce" opacity=".7" transform="rotate(216)"/>
+      <path d="M0,0 C-14,-9 -18,-42 0,-52 C18,-42 14,-9 0,0Z" fill="#f2c4ce" opacity=".7" transform="rotate(288)"/>
+      <circle r="12" fill="#fce9ec"/>
+      <circle r="6" fill="#e8a0b0"/>
+    </g>
+  </svg>
+
+  <!-- bottom-right blue -->
+  <svg class="bg-br" viewBox="0 0 240 200" fill="none">
+    <g transform="translate(120,90)">
+      <path d="M0,0 C-18,-11 -24,-52 0,-64 C24,-52 18,-11 0,0Z" fill="#b8d8e8" opacity=".7" transform="rotate(0)"/>
+      <path d="M0,0 C-18,-11 -24,-52 0,-64 C24,-52 18,-11 0,0Z" fill="#b8d8e8" opacity=".7" transform="rotate(45)"/>
+      <path d="M0,0 C-18,-11 -24,-52 0,-64 C24,-52 18,-11 0,0Z" fill="#b8d8e8" opacity=".7" transform="rotate(90)"/>
+      <path d="M0,0 C-18,-11 -24,-52 0,-64 C24,-52 18,-11 0,0Z" fill="#b8d8e8" opacity=".7" transform="rotate(135)"/>
+      <path d="M0,0 C-18,-11 -24,-52 0,-64 C24,-52 18,-11 0,0Z" fill="#b8d8e8" opacity=".7" transform="rotate(180)"/>
+      <path d="M0,0 C-18,-11 -24,-52 0,-64 C24,-52 18,-11 0,0Z" fill="#b8d8e8" opacity=".7" transform="rotate(225)"/>
+      <path d="M0,0 C-18,-11 -24,-52 0,-64 C24,-52 18,-11 0,0Z" fill="#b8d8e8" opacity=".7" transform="rotate(270)"/>
+      <path d="M0,0 C-18,-11 -24,-52 0,-64 C24,-52 18,-11 0,0Z" fill="#b8d8e8" opacity=".7" transform="rotate(315)"/>
+      <circle r="16" fill="#dceef6"/>
+      <circle r="8" fill="#7ab0c8"/>
+    </g>
+    <path d="M120 154 Q118 175 116 195" stroke="#b5c5a5" stroke-width="2" fill="none"/>
+    <path d="M118 170 Q98 160 96 145 Q110 156 118 170Z" fill="#b5c5a5" opacity=".6"/>
+  </svg>
+</div>
+
+<!-- ═══════════════ CARD ═══════════════ -->
+<main class="card">
+
+  <!-- HERO -->
+  <section class="hero">
+    <!-- flowers spilling over top of card -->
+    <div class="hero-flowers">
+      <!-- left top flower cluster -->
+      <svg class="hf-left" width="160" height="190" viewBox="0 0 160 190" fill="none">
+        <path d="M80 185 Q78 145 80 95" stroke="#b5c5a5" stroke-width="2" fill="none"/>
+        <path d="M79 155 Q57 143 55 127 Q70 139 79 155Z" fill="#b5c5a5" opacity=".7"/>
+        <path d="M79 170 Q103 158 106 142 Q89 156 79 170Z" fill="#b5c5a5" opacity=".7"/>
+        <g transform="translate(80,95)">
+          <path d="M0,0 C-14,-9 -19,-44 0,-54 C19,-44 14,-9 0,0Z" fill="#f2c4ce" opacity=".8" transform="rotate(0)"/>
+          <path d="M0,0 C-14,-9 -19,-44 0,-54 C19,-44 14,-9 0,0Z" fill="#f2c4ce" opacity=".8" transform="rotate(45)"/>
+          <path d="M0,0 C-14,-9 -19,-44 0,-54 C19,-44 14,-9 0,0Z" fill="#f2c4ce" opacity=".8" transform="rotate(90)"/>
+          <path d="M0,0 C-14,-9 -19,-44 0,-54 C19,-44 14,-9 0,0Z" fill="#f2c4ce" opacity=".8" transform="rotate(135)"/>
+          <path d="M0,0 C-14,-9 -19,-44 0,-54 C19,-44 14,-9 0,0Z" fill="#f2c4ce" opacity=".8" transform="rotate(180)"/>
+          <path d="M0,0 C-14,-9 -19,-44 0,-54 C19,-44 14,-9 0,0Z" fill="#f2c4ce" opacity=".8" transform="rotate(225)"/>
+          <path d="M0,0 C-14,-9 -19,-44 0,-54 C19,-44 14,-9 0,0Z" fill="#f2c4ce" opacity=".8" transform="rotate(270)"/>
+          <path d="M0,0 C-14,-9 -19,-44 0,-54 C19,-44 14,-9 0,0Z" fill="#f2c4ce" opacity=".8" transform="rotate(315)"/>
+          <path d="M0,0 C-9,-7 -12,-28 0,-36 C12,-28 9,-7 0,0Z" fill="#e8a0b0" opacity=".9" transform="rotate(22.5)"/>
+          <path d="M0,0 C-9,-7 -12,-28 0,-36 C12,-28 9,-7 0,0Z" fill="#e8a0b0" opacity=".9" transform="rotate(67.5)"/>
+          <path d="M0,0 C-9,-7 -12,-28 0,-36 C12,-28 9,-7 0,0Z" fill="#e8a0b0" opacity=".9" transform="rotate(112.5)"/>
+          <path d="M0,0 C-9,-7 -12,-28 0,-36 C12,-28 9,-7 0,0Z" fill="#e8a0b0" opacity=".9" transform="rotate(157.5)"/>
+          <path d="M0,0 C-9,-7 -12,-28 0,-36 C12,-28 9,-7 0,0Z" fill="#e8a0b0" opacity=".9" transform="rotate(202.5)"/>
+          <path d="M0,0 C-9,-7 -12,-28 0,-36 C12,-28 9,-7 0,0Z" fill="#e8a0b0" opacity=".9" transform="rotate(247.5)"/>
+          <path d="M0,0 C-9,-7 -12,-28 0,-36 C12,-28 9,-7 0,0Z" fill="#e8a0b0" opacity=".9" transform="rotate(292.5)"/>
+          <path d="M0,0 C-9,-7 -12,-28 0,-36 C12,-28 9,-7 0,0Z" fill="#e8a0b0" opacity=".9" transform="rotate(337.5)"/>
+          <circle r="13" fill="#fce9ec"/>
+          <circle r="6" fill="#e8a0b0"/>
+        </g>
+        <!-- small bud -->
+        <g transform="translate(136,20)">
+          <path d="M0,30 Q-2,15 0,0 Q2,15 0,30Z" fill="#f2c4ce" opacity=".8" transform="rotate(-15)"/>
+          <path d="M0,30 Q-2,15 0,0 Q2,15 0,30Z" fill="#e8a0b0" opacity=".7" transform="rotate(15)"/>
+          <ellipse cx="0" cy="0" rx="8" ry="14" fill="#f2c4ce" opacity=".85"/>
+        </g>
+        <path d="M136 34 Q134 50 132 70" stroke="#b5c5a5" stroke-width="1.5" fill="none"/>
+        <path d="M134 52 Q118 45 116 33 Q128 42 134 52Z" fill="#b5c5a5" opacity=".6"/>
+      </svg>
+
+      <!-- right top (blue flower) -->
+      <svg class="hf-right" width="160" height="190" viewBox="0 0 160 190" fill="none">
+        <path d="M80 185 Q78 145 80 95" stroke="#b5c5a5" stroke-width="2" fill="none"/>
+        <path d="M79 155 Q57 143 55 127 Q70 139 79 155Z" fill="#b5c5a5" opacity=".7"/>
+        <g transform="translate(80,95)">
+          <path d="M0,0 C-14,-9 -19,-44 0,-54 C19,-44 14,-9 0,0Z" fill="#b8d8e8" opacity=".8" transform="rotate(0)"/>
+          <path d="M0,0 C-14,-9 -19,-44 0,-54 C19,-44 14,-9 0,0Z" fill="#b8d8e8" opacity=".8" transform="rotate(45)"/>
+          <path d="M0,0 C-14,-9 -19,-44 0,-54 C19,-44 14,-9 0,0Z" fill="#b8d8e8" opacity=".8" transform="rotate(90)"/>
+          <path d="M0,0 C-14,-9 -19,-44 0,-54 C19,-44 14,-9 0,0Z" fill="#b8d8e8" opacity=".8" transform="rotate(135)"/>
+          <path d="M0,0 C-14,-9 -19,-44 0,-54 C19,-44 14,-9 0,0Z" fill="#b8d8e8" opacity=".8" transform="rotate(180)"/>
+          <path d="M0,0 C-14,-9 -19,-44 0,-54 C19,-44 14,-9 0,0Z" fill="#b8d8e8" opacity=".8" transform="rotate(225)"/>
+          <path d="M0,0 C-14,-9 -19,-44 0,-54 C19,-44 14,-9 0,0Z" fill="#b8d8e8" opacity=".8" transform="rotate(270)"/>
+          <path d="M0,0 C-14,-9 -19,-44 0,-54 C19,-44 14,-9 0,0Z" fill="#b8d8e8" opacity=".8" transform="rotate(315)"/>
+          <path d="M0,0 C-9,-7 -12,-28 0,-36 C12,-28 9,-7 0,0Z" fill="#7ab0c8" opacity=".9" transform="rotate(22.5)"/>
+          <path d="M0,0 C-9,-7 -12,-28 0,-36 C12,-28 9,-7 0,0Z" fill="#7ab0c8" opacity=".9" transform="rotate(67.5)"/>
+          <path d="M0,0 C-9,-7 -12,-28 0,-36 C12,-28 9,-7 0,0Z" fill="#7ab0c8" opacity=".9" transform="rotate(112.5)"/>
+          <path d="M0,0 C-9,-7 -12,-28 0,-36 C12,-28 9,-7 0,0Z" fill="#7ab0c8" opacity=".9" transform="rotate(157.5)"/>
+          <path d="M0,0 C-9,-7 -12,-28 0,-36 C12,-28 9,-7 0,0Z" fill="#7ab0c8" opacity=".9" transform="rotate(202.5)"/>
+          <path d="M0,0 C-9,-7 -12,-28 0,-36 C12,-28 9,-7 0,0Z" fill="#7ab0c8" opacity=".9" transform="rotate(247.5)"/>
+          <path d="M0,0 C-9,-7 -12,-28 0,-36 C12,-28 9,-7 0,0Z" fill="#7ab0c8" opacity=".9" transform="rotate(292.5)"/>
+          <path d="M0,0 C-9,-7 -12,-28 0,-36 C12,-28 9,-7 0,0Z" fill="#7ab0c8" opacity=".9" transform="rotate(337.5)"/>
+          <circle r="13" fill="#dceef6"/>
+          <circle r="6" fill="#7ab0c8"/>
+        </g>
+      </svg>
+    </div>
+
+    <span class="hero-date">25 August 2026</span>
+
+    <!-- Oval photo frame -->
+    <div class="photo-wrap">
+      <div class="lace-ring"></div>
+      <div class="photo-oval">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="13" r="6" stroke="#c8778a" stroke-width="1.2"/>
+          <path d="M6 32 C6 24 30 24 30 32" stroke="#c8778a" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span class="ph-text">Add your<br/>photo here</span>
+      </div>
+    </div>
+
+    <h1 class="couple-names">
+      John <span class="amp">&amp;</span> Princila
+    </h1>
+    <p class="hero-sub">25 · August · 2026 &nbsp;·&nbsp; Tatsfield, Westerham</p>
+  </section>
+
+  <!-- VERSE -->
+  <div class="verse-band">
+    <blockquote>
+      "What therefore God hath joined together, let not man put asunder."
+      <cite>— Mark 10:9</cite>
+    </blockquote>
+  </div>
+
+  <!-- CALENDAR -->
+  <section class="cal-section">
+    <span class="cal-tag">Save the date</span>
+    <div class="cal-row">
+      <div class="cal-day">
+        <span class="dn">Mon</span>
+        <span class="dd">24</span>
+      </div>
+      <div class="cal-day active">
+        <span class="dn">Tue</span>
+        <span class="dd">25</span>
+        <svg class="date-ring" viewBox="0 0 64 64" fill="none">
+          <path d="M32 6 C50 4 60 16 60 32 C60 50 48 60 32 60 C14 60 4 48 4 32 C4 14 16 3 34 5"
+                stroke="#c8778a" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="cal-day">
+        <span class="dn">Wed</span>
+        <span class="dd">26</span>
+      </div>
+    </div>
+    <p style="margin-top:1rem;font-size:.75rem;color:var(--muted);letter-spacing:.08em">August 2026</p>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-inner">
+      <span>Save the Date</span><span>✦</span>
+      <span>John &amp; Princila</span><span>✦</span>
+      <span>25 August 2026</span><span>✦</span>
+      <span>Save the Date</span><span>✦</span>
+      <span>John &amp; Princila</span><span>✦</span>
+      <span>25 August 2026</span><span>✦</span>
+      <span>Save the Date</span><span>✦</span>
+      <span>John &amp; Princila</span><span>✦</span>
+      <span>25 August 2026</span><span>✦</span>
+      <span>Save the Date</span><span>✦</span>
+      <span>John &amp; Princila</span><span>✦</span>
+      <span>25 August 2026</span><span>✦</span>
+    </div>
+  </div>
+
+  <!-- VENUE -->
+  <section class="venue-section">
+    <p class="sec-script">Location</p>
+    <div class="floral-rule">✦ ✦ ✦</div>
+    <p class="venue-address">
+      Chestnut Ave<br/>
+      Tatsfield, Westerham<br/>
+      TN16
+    </p>
+    <!-- Venue sketch -->
+    <svg class="venue-sketch" viewBox="0 0 300 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Main building -->
+      <rect x="60" y="50" width="180" height="65" stroke="#9a8878" stroke-width="1.2" fill="none"/>
+      <!-- Roof -->
+      <path d="M55 50 L150 10 L245 50" stroke="#9a8878" stroke-width="1.2" fill="none"/>
+      <!-- Door -->
+      <rect x="132" y="85" width="36" height="30" rx="18" stroke="#9a8878" stroke-width="1" fill="none"/>
+      <!-- Windows -->
+      <rect x="76" y="64" width="28" height="20" stroke="#9a8878" stroke-width="1" fill="none"/>
+      <line x1="90" y1="64" x2="90" y2="84" stroke="#9a8878" stroke-width=".8"/>
+      <line x1="76" y1="74" x2="104" y2="74" stroke="#9a8878" stroke-width=".8"/>
+      <rect x="196" y="64" width="28" height="20" stroke="#9a8878" stroke-width="1" fill="none"/>
+      <line x1="210" y1="64" x2="210" y2="84" stroke="#9a8878" stroke-width=".8"/>
+      <line x1="196" y1="74" x2="224" y2="74" stroke="#9a8878" stroke-width=".8"/>
+      <!-- Chimney -->
+      <rect x="170" y="18" width="14" height="22" stroke="#9a8878" stroke-width="1" fill="none"/>
+      <!-- Ground line -->
+      <line x1="20" y1="115" x2="280" y2="115" stroke="#9a8878" stroke-width="1"/>
+      <!-- Trees -->
+      <line x1="30" y1="115" x2="30" y2="70" stroke="#b5c5a5" stroke-width="1.5"/>
+      <ellipse cx="30" cy="62" rx="16" ry="20" stroke="#b5c5a5" stroke-width="1.2" fill="none"/>
+      <line x1="270" y1="115" x2="270" y2="70" stroke="#b5c5a5" stroke-width="1.5"/>
+      <ellipse cx="270" cy="62" rx="16" ry="20" stroke="#b5c5a5" stroke-width="1.2" fill="none"/>
     </svg>
-    scroll
-  </div>
-</section>
+    <a class="map-btn" href="https://maps.google.com/?q=Chestnut+Ave+Tatsfield+Westerham+TN16" target="_blank" rel="noopener">
+      View on Map
+    </a>
+  </section>
 
-<!-- DETAILS -->
-<section id="details">
-  <div class="section-inner">
-    <span class="section-tag">Ceremony</span>
-    <h2>The Big Day</h2>
-    <div class="divider">✦ ✦ ✦</div>
-    <div class="details-grid">
-      <div class="detail-card">
-        <div class="icon">🗓️</div>
-        <h3>Date</h3>
-        <p>Tuesday<br />25 August 2026</p>
+  <!-- TIMELINE -->
+  <section class="timeline-section">
+    <p class="sec-script" style="text-align:center">Schedule</p>
+    <div class="floral-rule">✦ ✦ ✦</div>
+
+    <div class="tl-item">
+      <div class="tl-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c8778a" stroke-width="1.4" stroke-linecap="round">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
       </div>
-      <div class="detail-card">
-        <div class="icon">📍</div>
-        <h3>Venue</h3>
-        <p>Chestnut Ave<br />Tatsfield, Westerham<br />TN16</p>
+      <div>
+        <span class="tl-time">14:00</span>
+        <span class="tl-event">Guests Arrive</span>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- FAMILIES -->
-<section id="families">
-  <div class="section-inner">
-    <span class="section-tag">With the blessings of</span>
-    <h2>Our Families</h2>
-    <div class="divider">✦ ✦ ✦</div>
-    <div class="families-grid">
-      <div class="family-card">
-        <h3>John's Family</h3>
-        <div class="family-member">
-          <div class="role">Father</div>
-          <div>Yacub Garbuja</div>
+    <div class="tl-item">
+      <div class="tl-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c8778a" stroke-width="1.4" stroke-linecap="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <div>
+        <span class="tl-time">15:00</span>
+        <span class="tl-event">Wedding Ceremony</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c8778a" stroke-width="1.4" stroke-linecap="round">
+          <path d="M8 22h8M12 11v11M20 7H4l2 4h12l2-4z"/><path d="M6 7V4h12v3"/>
+        </svg>
+      </div>
+      <div>
+        <span class="tl-time">16:30</span>
+        <span class="tl-event">Drinks &amp; Reception</span>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#c8778a" stroke-width="1.4" stroke-linecap="round">
+          <path d="M3 11l19-9-9 19-2-8-8-2z"/>
+        </svg>
+      </div>
+      <div>
+        <span class="tl-time">18:00</span>
+        <span class="tl-event">Dinner &amp; Celebrations</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOTANICAL LINE ART -->
+  <div class="botanical-art">
+    <svg viewBox="0 0 480 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Left peony outline -->
+      <g transform="translate(90,100)">
+        <path d="M0,0 C-20,-8 -32,-40 -12,-52 C-2,-57 8,-40 0,0Z" stroke="#d4899a" stroke-width="1" fill="none"/>
+        <path d="M0,0 C8,-28 38,-38 42,-18 C44,-6 28,4 0,0Z" stroke="#d4899a" stroke-width="1" fill="none"/>
+        <path d="M0,0 C-4,-28 14,-52 26,-46 C34,-42 28,-18 0,0Z" stroke="#d4899a" stroke-width="1" fill="none"/>
+        <path d="M0,0 C-22,-12 -38,-8 -36,12 C-34,24 -14,20 0,0Z" stroke="#d4899a" stroke-width="1" fill="none"/>
+        <path d="M0,0 C-12,-14 -18,-36 -6,-42 C4,-46 12,-26 0,0Z" stroke="#d4899a" stroke-width="1" fill="none"/>
+        <path d="M0,0 C10,-10 28,-14 28,-2 C28,8 14,10 0,0Z" stroke="#d4899a" stroke-width="1" fill="none"/>
+        <circle cx="0" cy="-8" r="10" stroke="#d4899a" stroke-width="1" fill="none"/>
+        <path d="M0 0 Q-5,22 -8,50" stroke="#b5c5a5" stroke-width="1.5" fill="none"/>
+        <path d="M-4,24 Q-22,16 -26,2 Q-14,14 -4,24Z" stroke="#b5c5a5" stroke-width="1" fill="none"/>
+        <path d="M-6,36 Q6,28 10,14 Q2,26 -6,36Z" stroke="#b5c5a5" stroke-width="1" fill="none"/>
+      </g>
+      <!-- Center bud outline -->
+      <g transform="translate(200,110)">
+        <ellipse cx="0" cy="-30" rx="14" ry="22" stroke="#d4899a" stroke-width="1" fill="none"/>
+        <path d="M-14,-30 Q-20,-50 0,-58 Q20,-50 14,-30" stroke="#d4899a" stroke-width="1" fill="none"/>
+        <path d="M0 0 Q0,15 0,30" stroke="#b5c5a5" stroke-width="1.5" fill="none"/>
+        <path d="M0,14 Q-14,8 -16,-4 Q-8,6 0,14Z" stroke="#b5c5a5" stroke-width="1" fill="none"/>
+      </g>
+      <!-- Right peony outline (larger) -->
+      <g transform="translate(340,105)">
+        <path d="M0,0 C-20,-8 -32,-40 -12,-52 C-2,-57 8,-40 0,0Z" stroke="#d4899a" stroke-width="1" fill="none" transform="scale(-1,1)"/>
+        <path d="M0,0 C8,-28 38,-38 42,-18 C44,-6 28,4 0,0Z" stroke="#d4899a" stroke-width="1" fill="none" transform="scale(-1,1)"/>
+        <path d="M0,0 C-4,-28 14,-52 26,-46 C34,-42 28,-18 0,0Z" stroke="#d4899a" stroke-width="1" fill="none"/>
+        <path d="M0,0 C-22,-12 -38,-8 -36,12 C-34,24 -14,20 0,0Z" stroke="#d4899a" stroke-width="1" fill="none" transform="scale(-1,1)"/>
+        <path d="M0,0 C-12,-14 -18,-36 -6,-42 C4,-46 12,-26 0,0Z" stroke="#d4899a" stroke-width="1" fill="none"/>
+        <path d="M0,0 C10,-10 28,-14 28,-2 C28,8 14,10 0,0Z" stroke="#d4899a" stroke-width="1" fill="none"/>
+        <circle cx="0" cy="-8" r="10" stroke="#d4899a" stroke-width="1" fill="none"/>
+        <path d="M0 0 Q3,22 6,50" stroke="#b5c5a5" stroke-width="1.5" fill="none"/>
+        <path d="M4,24 Q22,16 26,2 Q14,14 4,24Z" stroke="#b5c5a5" stroke-width="1" fill="none"/>
+      </g>
+      <!-- Horizontal stem line -->
+      <path d="M30,155 Q240,148 450,155" stroke="#b5c5a5" stroke-width="1" fill="none" opacity=".5"/>
+    </svg>
+  </div>
+
+  <!-- DRESS CODE -->
+  <section class="dresscode-section">
+    <p class="sec-script">Dress Code</p>
+    <div class="floral-rule">✦ ✦ ✦</div>
+    <div class="swatches">
+      <div class="sw" style="background:#f2c4ce" title="Baby Pink"></div>
+      <div class="sw" style="background:#b8d8e8" title="Baby Blue"></div>
+      <div class="sw" style="background:#f5f0eb" title="Cream"></div>
+      <div class="sw" style="background:#8a7878" title="Mauve"></div>
+    </div>
+    <p class="dresscode-note">
+      Formal / Wedding Party Attire<br/>
+      <span style="font-size:.82rem">Kindly dress in keeping with the elegance of the occasion.</span>
+    </p>
+  </section>
+
+  <!-- FAMILIES -->
+  <section class="families-section">
+    <p class="sec-script">With the Blessings of</p>
+    <div class="floral-rule" style="color:var(--blue-dk)">✦ ✦ ✦</div>
+    <div class="fam-grid">
+      <div class="fam-card">
+        <h4>John's Family</h4>
+        <div class="fam-member">
+          <span class="fam-role">Father</span>
+          Yacub Garbuja
         </div>
-        <div class="family-member">
-          <div class="role">Mother</div>
-          <div>Martha Garbuja</div>
+        <div class="fam-member">
+          <span class="fam-role">Mother</span>
+          Martha Garbuja
         </div>
       </div>
-      <div class="family-card">
-        <h3>Princila's Family</h3>
-        <div class="family-member">
-          <div class="role">Father</div>
-          <div>Purna Bahadur Gharti Magar</div>
+      <div class="fam-card">
+        <h4>Princila's Family</h4>
+        <div class="fam-member">
+          <span class="fam-role">Father</span>
+          Purna Bahadur Gharti Magar
         </div>
-        <div class="family-member">
-          <div class="role">Mother</div>
-          <div>Moti Sara Gharti</div>
+        <div class="fam-member">
+          <span class="fam-role">Mother</span>
+          Moti Sara Gharti
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- WEDDING PARTY -->
-<section id="party">
-  <div class="section-inner">
-    <span class="section-tag">Standing with us</span>
-    <h2>Wedding Party</h2>
-    <div class="divider">✦ ✦ ✦</div>
+  <!-- WEDDING PARTY -->
+  <section class="party-section">
+    <p class="sec-script">Wedding Party</p>
+    <div class="floral-rule">✦ ✦ ✦</div>
     <div class="party-grid">
-      <div class="party-card grooms">
-        <h3>Groomsmen</h3>
-        <p>Details coming soon</p>
+      <div class="party-col grooms">
+        <h4>Groomsmen</h4>
+        <p>Names coming soon</p>
       </div>
-      <div class="party-card brides">
-        <h3>Bridesmaids</h3>
-        <p>Details coming soon</p>
+      <div class="party-col brides">
+        <h4>Bridesmaids</h4>
+        <p>Names coming soon</p>
       </div>
     </div>
-    <div class="dress-code">
-      <strong>Dress Code</strong>
-      Formal / Wedding Party Attire
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- RSVP -->
-<section id="rsvp">
-  <div class="section-inner">
-    <span class="section-tag">Kindly respond by 1 August 2026</span>
-    <h2>RSVP</h2>
-    <div class="divider">✦ ✦ ✦</div>
+  <!-- RSVP -->
+  <section class="rsvp-section">
+    <p class="sec-script" style="text-align:center">RSVP</p>
+    <div class="floral-rule">✦ ✦ ✦</div>
+    <p style="text-align:center;font-size:.75rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase">
+      Kindly respond by 1 August 2026
+    </p>
 
-    <div id="rsvp-success">
-      <div class="check">💌</div>
+    <div id="rsvp-thanks">
+      <div class="ti">💌</div>
       <h3>Thank you!</h3>
-      <p>We've received your RSVP and can't wait to celebrate with you.</p>
+      <p>We can't wait to celebrate with you.</p>
     </div>
 
     <form id="rsvp-form" novalidate>
       <div class="field">
         <label for="name">Full Name *</label>
-        <input type="text" id="name" placeholder="Your full name" required />
+        <input type="text" id="name" placeholder="Your full name" required/>
       </div>
-
       <div class="field">
-        <label for="email">Email Address *</label>
-        <input type="email" id="email" placeholder="your@email.com" required />
+        <label for="email">Email *</label>
+        <input type="email" id="email" placeholder="your@email.com" required/>
       </div>
-
       <div class="field">
         <label>Attendance *</label>
         <div class="radio-group">
-          <label class="radio-option">
-            <input type="radio" name="attendance" value="yes" required />
+          <label class="rl">
+            <input type="radio" name="att" value="yes" required/>
             Joyfully accepts
           </label>
-          <label class="radio-option">
-            <input type="radio" name="attendance" value="no" />
+          <label class="rl">
+            <input type="radio" name="att" value="no"/>
             Regretfully declines
           </label>
         </div>
       </div>
-
-      <div class="field" id="guests-field">
-        <label for="guests">Number of Guests (including yourself)</label>
+      <div class="field" id="guests-row">
+        <label for="guests">Number of Guests</label>
         <select id="guests">
           <option value="1">1</option>
           <option value="2">2</option>
@@ -576,67 +918,61 @@
           <option value="4">4</option>
         </select>
       </div>
-
       <div class="field">
         <label for="dietary">Dietary Requirements</label>
-        <input type="text" id="dietary" placeholder="Allergies, vegetarian, halal, etc." />
+        <input type="text" id="dietary" placeholder="Allergies, vegetarian, halal…"/>
       </div>
-
       <div class="field">
-        <label for="message">Message to the Couple</label>
-        <textarea id="message" placeholder="A note of love and well wishes…"></textarea>
+        <label for="msg">Message to the Couple</label>
+        <textarea id="msg" placeholder="A note of love and well wishes…"></textarea>
       </div>
-
       <button type="submit" class="btn">Send RSVP</button>
     </form>
-  </div>
-</section>
+  </section>
 
-<!-- FOOTER -->
-<footer>
-  <span>John & Princila</span><br />
-  25 August 2026 · Tatsfield, Westerham
-</footer>
+  <!-- FOOTER -->
+  <footer>
+    <span class="f-names">John &amp; Princila</span>
+    <p>25 August 2026 · Tatsfield, Westerham</p>
+    <p style="margin-top:.4rem;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--pink-dk)">"What God has joined together"</p>
+  </footer>
+
+</main>
 
 <script>
   const form = document.getElementById('rsvp-form');
-  const success = document.getElementById('rsvp-success');
-  const guestsField = document.getElementById('guests-field');
+  const thanks = document.getElementById('rsvp-thanks');
+  const guestsRow = document.getElementById('guests-row');
 
-  document.querySelectorAll('input[name="attendance"]').forEach(radio => {
-    radio.addEventListener('change', () => {
-      guestsField.style.display = radio.value === 'no' ? 'none' : 'flex';
+  document.querySelectorAll('input[name="att"]').forEach(r => {
+    r.addEventListener('change', () => {
+      guestsRow.style.display = r.value === 'no' ? 'none' : 'flex';
     });
   });
 
   form.addEventListener('submit', e => {
     e.preventDefault();
-
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
-    const attendance = document.querySelector('input[name="attendance"]:checked');
-
-    if (!name || !email || !attendance) {
-      const missing = [];
-      if (!name) missing.push('Full Name');
-      if (!email) missing.push('Email');
-      if (!attendance) missing.push('Attendance');
-      alert('Please fill in: ' + missing.join(', '));
+    const att = document.querySelector('input[name="att"]:checked');
+    if (!name || !email || !att) {
+      const m = [];
+      if (!name) m.push('Full Name');
+      if (!email) m.push('Email');
+      if (!att) m.push('Attendance');
+      alert('Please complete: ' + m.join(', '));
       return;
     }
-
-    // In production connect this to a backend / Formspree / Netlify Forms
-    console.log('RSVP submitted:', {
-      name,
-      email,
-      attendance: attendance.value,
+    // Wire to Formspree / Netlify Forms / your backend here
+    console.log({
+      name, email,
+      attendance: att.value,
       guests: document.getElementById('guests').value,
       dietary: document.getElementById('dietary').value,
-      message: document.getElementById('message').value,
+      message: document.getElementById('msg').value,
     });
-
     form.style.display = 'none';
-    success.style.display = 'block';
+    thanks.style.display = 'block';
   });
 </script>
 </body>
