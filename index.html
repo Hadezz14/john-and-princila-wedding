@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>John & Princila — 25 August 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:     #b8d8e8;
+      --blue-lt:  #dceef6;
+      --blue-dk:  #7ab0c8;
+      --pink:     #f2c4ce;
+      --pink-lt:  #fce9ec;
+      --pink-dk:  #d98fa0;
+      --cream:    #fdfaf8;
+      --text:     #3d3535;
+      --muted:    #8a7878;
+      --serif:    'Cormorant Garamond', serif;
+      --sans:     'Jost', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 1rem 2rem;
+      background: rgba(253,250,248,.9);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid var(--blue-lt);
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--pink-dk); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background: linear-gradient(160deg, var(--blue-lt) 0%, var(--cream) 45%, var(--pink-lt) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before, #hero::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      opacity: .25;
+    }
+    #hero::before {
+      width: 500px; height: 500px;
+      background: var(--blue);
+      top: -150px; left: -150px;
+    }
+    #hero::after {
+      width: 400px; height: 400px;
+      background: var(--pink);
+      bottom: -100px; right: -100px;
+    }
+
+    .hero-label {
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--pink-dk);
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: .02em;
+      color: var(--text);
+    }
+
+    h1 span { color: var(--blue-dk); }
+
+    .hero-date {
+      margin-top: 1.4rem;
+      font-size: .85rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .verse {
+      margin-top: 2.5rem;
+      max-width: 420px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .verse cite {
+      display: block;
+      margin-top: .4rem;
+      font-style: normal;
+      font-size: .78rem;
+      letter-spacing: .1em;
+      color: var(--pink-dk);
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .4rem;
+      color: var(--muted);
+      font-size: .7rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    .scroll-cue svg { width: 18px; }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(6px); }
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 2rem; }
+
+    .section-inner {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      display: block;
+      text-align: center;
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--blue-dk);
+      margin-bottom: .6rem;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    /* ── DETAILS ── */
+    #details { background: var(--cream); }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 600px) { .details-grid { grid-template-columns: 1fr; } }
+
+    .detail-card {
+      border: 1px solid var(--blue-lt);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      background: white;
+    }
+
+    .detail-card .icon {
+      font-size: 1.6rem;
+      margin-bottom: .8rem;
+    }
+
+    .detail-card h3 {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 400;
+      margin-bottom: .5rem;
+    }
+
+    .detail-card p {
+      font-size: .88rem;
+      color: var(--muted);
+    }
+
+    /* ── FAMILIES ── */
+    #families { background: linear-gradient(135deg, var(--blue-lt), var(--pink-lt)); }
+
+    .families-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 600px) { .families-grid { grid-template-columns: 1fr; } }
+
+    .family-card {
+      background: white;
+      border-radius: 14px;
+      padding: 2.2rem;
+      text-align: center;
+      box-shadow: 0 2px 20px rgba(0,0,0,.05);
+    }
+
+    .family-card h3 {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 1.2rem;
+      color: var(--blue-dk);
+    }
+
+    .family-member {
+      margin-bottom: .5rem;
+      font-size: .9rem;
+    }
+    .family-member .role {
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--pink-dk);
+    }
+
+    /* ── WEDDING PARTY ── */
+    #party { background: var(--cream); }
+
+    .party-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 600px) { .party-grid { grid-template-columns: 1fr; } }
+
+    .party-card {
+      border-radius: 14px;
+      padding: 2.2rem;
+      text-align: center;
+    }
+    .party-card.grooms { background: var(--blue-lt); }
+    .party-card.brides { background: var(--pink-lt); }
+
+    .party-card h3 {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+    .party-card.grooms h3 { color: var(--blue-dk); }
+    .party-card.brides h3 { color: var(--pink-dk); }
+
+    .party-card p {
+      font-size: .85rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .dress-code {
+      margin-top: 3rem;
+      text-align: center;
+      padding: 1.6rem 2rem;
+      border: 1px dashed var(--pink-dk);
+      border-radius: 12px;
+      background: var(--pink-lt);
+      font-size: .85rem;
+      color: var(--muted);
+    }
+    .dress-code strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      color: var(--text);
+      margin-bottom: .3rem;
+    }
+
+    /* ── RSVP ── */
+    #rsvp { background: linear-gradient(160deg, var(--pink-lt) 0%, var(--cream) 60%, var(--blue-lt) 100%); }
+
+    form {
+      max-width: 560px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem;
+    }
+
+    label {
+      font-size: .75rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    input, select, textarea {
+      font-family: var(--sans);
+      font-size: .95rem;
+      padding: .75rem 1rem;
+      border: 1px solid var(--blue-lt);
+      border-radius: 8px;
+      background: white;
+      color: var(--text);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+      width: 100%;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--blue-dk);
+      box-shadow: 0 0 0 3px rgba(122,176,200,.15);
+    }
+
+    textarea { resize: vertical; min-height: 90px; }
+
+    .radio-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      cursor: pointer;
+      font-size: .9rem;
+    }
+
+    .radio-option input[type="radio"] {
+      width: auto;
+      accent-color: var(--pink-dk);
+    }
+
+    .btn {
+      margin-top: .5rem;
+      padding: .9rem 2.5rem;
+      background: linear-gradient(135deg, var(--blue-dk), var(--pink-dk));
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-family: var(--sans);
+      font-size: .85rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      align-self: center;
+      transition: opacity .2s, transform .15s;
+    }
+    .btn:hover { opacity: .88; transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    #rsvp-success {
+      display: none;
+      text-align: center;
+      padding: 3rem;
+    }
+    #rsvp-success .check { font-size: 2.5rem; margin-bottom: 1rem; }
+    #rsvp-success h3 {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 300;
+      margin-bottom: .5rem;
+    }
+    #rsvp-success p { color: var(--muted); font-size: .9rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      border-top: 1px solid var(--blue-lt);
+      font-size: .78rem;
+      color: var(--muted);
+      letter-spacing: .05em;
+    }
+
+    footer span {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--pink-dk);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      text-align: center;
+      color: var(--pink);
+      font-size: 1.2rem;
+      margin: 0 auto 2.5rem;
+      letter-spacing: .6em;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#details">Details</a>
+  <a href="#families">Families</a>
+  <a href="#party">Wedding Party</a>
+  <a href="#rsvp">RSVP</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <p class="hero-label">We're getting married</p>
+  <h1>John<br /><span>&</span><br />Princila</h1>
+  <p class="hero-date">25 · August · 2026</p>
+  <blockquote class="verse">
+    "What God has joined together, let no one separate."
+    <cite>— Mark 10:9</cite>
+  </blockquote>
+  <div class="scroll-cue">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+    scroll
+  </div>
+</section>
+
+<!-- DETAILS -->
+<section id="details">
+  <div class="section-inner">
+    <span class="section-tag">Ceremony</span>
+    <h2>The Big Day</h2>
+    <div class="divider">✦ ✦ ✦</div>
+    <div class="details-grid">
+      <div class="detail-card">
+        <div class="icon">🗓️</div>
+        <h3>Date</h3>
+        <p>Tuesday<br />25 August 2026</p>
+      </div>
+      <div class="detail-card">
+        <div class="icon">📍</div>
+        <h3>Venue</h3>
+        <p>Chestnut Ave<br />Tatsfield, Westerham<br />TN16</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAMILIES -->
+<section id="families">
+  <div class="section-inner">
+    <span class="section-tag">With the blessings of</span>
+    <h2>Our Families</h2>
+    <div class="divider">✦ ✦ ✦</div>
+    <div class="families-grid">
+      <div class="family-card">
+        <h3>John's Family</h3>
+        <div class="family-member">
+          <div class="role">Father</div>
+          <div>Yacub Garbuja</div>
+        </div>
+        <div class="family-member">
+          <div class="role">Mother</div>
+          <div>Martha Garbuja</div>
+        </div>
+      </div>
+      <div class="family-card">
+        <h3>Princila's Family</h3>
+        <div class="family-member">
+          <div class="role">Father</div>
+          <div>Purna Bahadur Gharti Magar</div>
+        </div>
+        <div class="family-member">
+          <div class="role">Mother</div>
+          <div>Moti Sara Gharti</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEDDING PARTY -->
+<section id="party">
+  <div class="section-inner">
+    <span class="section-tag">Standing with us</span>
+    <h2>Wedding Party</h2>
+    <div class="divider">✦ ✦ ✦</div>
+    <div class="party-grid">
+      <div class="party-card grooms">
+        <h3>Groomsmen</h3>
+        <p>Details coming soon</p>
+      </div>
+      <div class="party-card brides">
+        <h3>Bridesmaids</h3>
+        <p>Details coming soon</p>
+      </div>
+    </div>
+    <div class="dress-code">
+      <strong>Dress Code</strong>
+      Formal / Wedding Party Attire
+    </div>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section id="rsvp">
+  <div class="section-inner">
+    <span class="section-tag">Kindly respond by 1 August 2026</span>
+    <h2>RSVP</h2>
+    <div class="divider">✦ ✦ ✦</div>
+
+    <div id="rsvp-success">
+      <div class="check">💌</div>
+      <h3>Thank you!</h3>
+      <p>We've received your RSVP and can't wait to celebrate with you.</p>
+    </div>
+
+    <form id="rsvp-form" novalidate>
+      <div class="field">
+        <label for="name">Full Name *</label>
+        <input type="text" id="name" placeholder="Your full name" required />
+      </div>
+
+      <div class="field">
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" placeholder="your@email.com" required />
+      </div>
+
+      <div class="field">
+        <label>Attendance *</label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="attendance" value="yes" required />
+            Joyfully accepts
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="attendance" value="no" />
+            Regretfully declines
+          </label>
+        </div>
+      </div>
+
+      <div class="field" id="guests-field">
+        <label for="guests">Number of Guests (including yourself)</label>
+        <select id="guests">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="dietary">Dietary Requirements</label>
+        <input type="text" id="dietary" placeholder="Allergies, vegetarian, halal, etc." />
+      </div>
+
+      <div class="field">
+        <label for="message">Message to the Couple</label>
+        <textarea id="message" placeholder="A note of love and well wishes…"></textarea>
+      </div>
+
+      <button type="submit" class="btn">Send RSVP</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>John & Princila</span><br />
+  25 August 2026 · Tatsfield, Westerham
+</footer>
+
+<script>
+  const form = document.getElementById('rsvp-form');
+  const success = document.getElementById('rsvp-success');
+  const guestsField = document.getElementById('guests-field');
+
+  document.querySelectorAll('input[name="attendance"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      guestsField.style.display = radio.value === 'no' ? 'none' : 'flex';
+    });
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const attendance = document.querySelector('input[name="attendance"]:checked');
+
+    if (!name || !email || !attendance) {
+      const missing = [];
+      if (!name) missing.push('Full Name');
+      if (!email) missing.push('Email');
+      if (!attendance) missing.push('Attendance');
+      alert('Please fill in: ' + missing.join(', '));
+      return;
+    }
+
+    // In production connect this to a backend / Formspree / Netlify Forms
+    console.log('RSVP submitted:', {
+      name,
+      email,
+      attendance: attendance.value,
+      guests: document.getElementById('guests').value,
+      dietary: document.getElementById('dietary').value,
+      message: document.getElementById('message').value,
+    });
+
+    form.style.display = 'none';
+    success.style.display = 'block';
+  });
+</script>
+</body>
+</html>
