@@ -58,22 +58,53 @@ nav{
 /* ── HERO ── */
 #home{
   min-height:100vh;
-  background:linear-gradient(160deg,var(--blue-lt) 0%,var(--cream) 40%,var(--pink-lt) 100%);
+  background:#fdfaf8;
   position:relative;overflow:hidden;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   padding:6rem 2rem 4rem;
   text-align:center;
 }
+/* Soft watercolor blob wash */
+#home::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 65% 55% at 10% 15%, rgba(242,196,206,.5) 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 90% 12%, rgba(184,216,232,.45) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 60% at 80% 88%, rgba(242,196,206,.38) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 55% at 15% 85%, rgba(184,216,232,.4) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 50% 50%, rgba(253,250,248,1) 0%, transparent 55%);
+  pointer-events:none;z-index:0;
+}
+/* Thin decorative inner frame */
+#home::after{
+  content:'';position:absolute;
+  inset:clamp(16px,3vw,36px);
+  border:1px solid rgba(200,119,138,.18);
+  border-radius:2px;
+  pointer-events:none;z-index:0;
+}
+/* Corner accent lines */
+.hero-corner{
+  position:absolute;pointer-events:none;z-index:1;
+  width:clamp(40px,6vw,70px);height:clamp(40px,6vw,70px);
+}
+.hero-corner::before,.hero-corner::after{content:'';position:absolute;background:rgba(200,119,138,.35)}
+.hero-corner::before{width:100%;height:1.5px;top:0;left:0}
+.hero-corner::after{width:1.5px;height:100%;top:0;left:0}
+.hc-tl{top:clamp(20px,3.5vw,42px);left:clamp(20px,3.5vw,42px)}
+.hc-tr{top:clamp(20px,3.5vw,42px);right:clamp(20px,3.5vw,42px);transform:scaleX(-1)}
+.hc-bl{bottom:clamp(20px,3.5vw,42px);left:clamp(20px,3.5vw,42px);transform:scaleY(-1)}
+.hc-br{bottom:clamp(20px,3.5vw,42px);right:clamp(20px,3.5vw,42px);transform:scale(-1,-1)}
 
-/* J&P monogram background */
+/* Elegant J&P behind couple names */
 .h-mono{
-  font-family:var(--script);font-size:clamp(120px,28vw,280px);
-  color:var(--text);opacity:.08;
+  font-family:var(--script);font-size:clamp(180px,35vw,420px);
+  color:var(--pink-dk);opacity:.04;
   position:absolute;top:50%;left:50%;
-  transform:translate(-50%,-50%);
+  transform:translate(-50%,-52%);
   white-space:nowrap;pointer-events:none;
   z-index:0;user-select:none;
-  letter-spacing:-.02em;
+  line-height:1;
 }
 
 /* Watercolor flower corners */
@@ -132,7 +163,7 @@ nav{
 
 /* ── VERSE ── */
 #verse{
-  background:var(--blue-lt);
+  background:linear-gradient(135deg,var(--blue-lt) 0%,var(--blue-lt) 60%,var(--pink-lt) 100%);
   padding:4rem 2rem;text-align:center;
 }
 #verse blockquote{
@@ -181,7 +212,7 @@ nav{
 .venue-art-wrap{opacity:.55}
 
 /* ── TIMELINE ── */
-#schedule{padding:6rem 2rem;background:var(--pink-lt)}
+#schedule{padding:6rem 2rem;background:linear-gradient(160deg,var(--pink-lt) 0%,#fce9ec 50%,var(--blue-lt) 100%)}
 .tl-track{
   display:flex;align-items:flex-start;justify-content:center;
   gap:0;position:relative;margin-top:2.5rem;
@@ -223,10 +254,10 @@ nav{
 .dc-note{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--muted);line-height:1.9;max-width:480px;margin:0 auto}
 
 /* ── FAMILIES ── */
-#families{padding:6rem 2rem;background:var(--blue-lt)}
+#families{padding:6rem 2rem;background:linear-gradient(160deg,var(--blue-lt) 0%,var(--cream) 100%)}
 .fam-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:760px;margin:2rem auto 0}
 @media(max-width:600px){.fam-grid{grid-template-columns:1fr}}
-.fam-card{background:white;border-radius:14px;padding:2rem;text-align:center;box-shadow:0 2px 20px rgba(0,0,0,.05)}
+.fam-card{background:white;border-radius:14px;padding:2rem;text-align:center;box-shadow:0 4px 28px rgba(200,119,138,.1);border-top:3px solid var(--pink)}
 .fam-card h4{font-family:var(--script);font-size:2rem;color:var(--blue-dk);margin-bottom:1rem}
 .fam-member{margin-bottom:.6rem;font-size:.88rem;line-height:1.5}
 .fam-role{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--pink-dk);display:block}
@@ -245,7 +276,7 @@ nav{
 
 /* ── GENTLE REMINDER ── */
 #reminder{
-  padding:6rem 2rem;background:var(--pink-lt);
+  padding:6rem 2rem;background:linear-gradient(160deg,var(--pink-lt) 0%,#fef5f7 50%,var(--blue-lt) 100%);
   position:relative;overflow:hidden;text-align:center;
 }
 .rem-inner{max-width:700px;margin:0 auto;position:relative;z-index:1}
@@ -269,7 +300,7 @@ nav{
 
 /* ── NO GIFT ── */
 #nogift{
-  padding:5rem 2rem;background:var(--blue-lt);
+  padding:5rem 2rem;background:linear-gradient(160deg,var(--blue-lt) 0%,#edf6fb 50%,var(--pink-lt) 100%);
   position:relative;overflow:hidden;text-align:center;
 }
 .gift-inner{max-width:600px;margin:0 auto;position:relative;z-index:1}
@@ -282,17 +313,18 @@ nav{
 .gift-sub{font-size:.82rem;color:var(--muted);margin-top:.8rem;letter-spacing:.04em}
 
 /* ── RSVP ── */
-#rsvp{padding:6rem 2rem;background:var(--cream);position:relative;overflow:hidden}
+#rsvp{padding:6rem 2rem;background:linear-gradient(160deg,var(--pink-lt) 0%,var(--cream) 40%,var(--blue-lt) 100%);position:relative;overflow:hidden}
 .rsvp-wrap{max-width:680px;margin:0 auto;position:relative;z-index:1}
 .rsvp-form{display:flex;flex-direction:column;gap:1.1rem;margin-top:1.8rem}
 .rsvp-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 @media(max-width:580px){.rsvp-row{grid-template-columns:1fr}}
 .rsvp-form input,.rsvp-form select,.rsvp-form textarea{
   font-family:var(--sans);font-size:.9rem;padding:.75rem 1rem;
-  border:1px solid var(--pink);border-radius:8px;
-  background:white;color:var(--text);outline:none;width:100%;transition:border-color .2s;
+  border:1px solid rgba(200,119,138,.3);border-radius:8px;
+  background:rgba(255,255,255,.85);backdrop-filter:blur(4px);color:var(--text);outline:none;width:100%;transition:border-color .2s,box-shadow .2s;
+  box-shadow:0 2px 8px rgba(200,119,138,.06);
 }
-.rsvp-form input:focus,.rsvp-form select:focus,.rsvp-form textarea:focus{border-color:var(--pink-dk)}
+.rsvp-form input:focus,.rsvp-form select:focus,.rsvp-form textarea:focus{border-color:var(--pink-dk);box-shadow:0 0 0 3px rgba(200,119,138,.12)}
 .rsvp-form textarea{min-height:90px;resize:vertical}
 .rsvp-btn{
   margin-top:.5rem;padding:.9rem 2.8rem;
@@ -345,6 +377,12 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
 <section id="home">
   <!-- J&P monogram background -->
   <div class="h-mono">J &amp; P</div>
+
+  <!-- Corner accent marks -->
+  <div class="hero-corner hc-tl"></div>
+  <div class="hero-corner hc-tr"></div>
+  <div class="hero-corner hc-bl"></div>
+  <div class="hero-corner hc-br"></div>
 
   <!-- Hero Content -->
   <p class="hero-tag fi">We're getting married</p>
