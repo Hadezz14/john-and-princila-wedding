@@ -30,6 +30,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--cream);font-size
 
 /* fade-in on scroll */
 .fi{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.fn{opacity:0;transform:translateY(23px);transition:opacity .8s ease,transform .8s ease}
+.fn.vis{opacity:1;transform:none}
 .fi.vis{opacity:1;transform:none}
 
 /* ── NAV ── */
@@ -261,7 +263,20 @@ nav{
 .fam-card h4{font-family:var(--script);font-size:2rem;color:var(--blue-dk);margin-bottom:1rem}
 .fam-member{margin-bottom:.6rem;font-size:.88rem;line-height:1.5}
 .fam-role{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--pink-dk);display:block}
-
+.fam-photo-wrap{
+  width:160px;height:160px;border-radius:50%;overflow:hidden;
+  margin:0 auto 1.2rem;
+  border:3px solid var(--pink-lt);
+  box-shadow:0 4px 20px rgba(200,119,138,.18);
+  position:relative;
+  background:linear-gradient(160deg,var(--pink-lt),var(--blue-lt));
+}
+.fam-photo{width:100%;height:100%;object-fit:cover;display:block}
+.fam-photo-placeholder{
+  width:100%;height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:.4rem;
+  color:var(--muted);font-size:.7rem;text-align:center;padding:.5rem;
+}
 /* ── WEDDING PARTY ── */
 #party{padding:6rem 2rem;background:var(--cream);text-align:center}
 .party-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:680px;margin:2rem auto 0}
@@ -273,15 +288,38 @@ nav{
 .party-col.grooms h4{color:var(--blue-dk);border-bottom:1px solid var(--blue)}
 .party-col.brides h4{color:var(--pink-dk);border-bottom:1px solid var(--pink)}
 .party-col p{font-size:.85rem;color:var(--muted);font-style:italic}
+.party-photo{width:100%;height:100%;object-fit:cover;display:block}
+.party-photo-placeholder{
+  width:100%;height:100%;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:.3rem;
+  color:var(--muted);font-size:.65rem;text-align:center;padding:.4rem;
+  line-height:1.4;
+}
 
 /* ── GENTLE REMINDER ── */
 #reminder{
   padding:6rem 2rem;background:linear-gradient(160deg,var(--pink-lt) 0%,#fef5f7 50%,var(--blue-lt) 100%);
   position:relative;overflow:hidden;text-align:center;
 }
-.rem-inner{max-width:700px;margin:0 auto;position:relative;z-index:1}
+.rem-inner{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.rem-cols{
+  display:grid;grid-template-columns:1fr auto 1fr;
+  gap:0 2rem;align-items:start;margin:2rem 0 0;text-align:left;
+}
+@media(max-width:680px){
+  .rem-cols{grid-template-columns:1fr;gap:2.5rem}
+  .rem-divider{display:none}
+}
+.rem-col-title{
+  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:1.2rem;text-align:center;display:block;
+}
+.rem-divider{
+  width:1px;background:linear-gradient(to bottom,transparent,var(--pink),var(--blue),transparent);
+  align-self:stretch;margin:0 .5rem;
+}
 .rem-list{
-  list-style:none;margin:1.8rem auto;max-width:560px;
+  list-style:none;margin:0;
   display:flex;flex-direction:column;gap:1rem;
 }
 .rem-list li{
@@ -292,11 +330,12 @@ nav{
   content:'✦';color:var(--pink-dk);font-size:.7rem;
   flex-shrink:0;margin-top:.35rem;
 }
+.rem-list.nepali li{font-size:1rem}
 .rem-bless{
   font-family:var(--serif);font-style:italic;
-  font-size:1.1rem;color:var(--muted);margin-top:1.5rem;
+  font-size:1.1rem;color:var(--muted);margin-top:1.5rem;text-align:center;
 }
-.rem-sign{font-family:var(--script);font-size:2.2rem;color:var(--pink-dk);margin-top:.5rem}
+.rem-sign{font-family:var(--script);font-size:2.2rem;color:var(--pink-dk);margin-top:.5rem;text-align:center;display:block}
 
 /* ── NO GIFT ── */
 #nogift{
@@ -413,7 +452,10 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
 <!-- ═══ VERSE ═══ -->
 <section id="verse">
   <blockquote class="fi">
-    "What therefore God hath joined together, let not man put asunder."
+     "यसकारण परमेश्‍वरले जसलाई एकसाथ जोड्नुभएको छ, मानिसले नछुट्ट्याओस्‌।"<cite>-मर्कूस 10:9</cite>
+  </blockquote>
+  <blockquote class="fi">
+    "What God has joined together, let no one separate."
     <cite>— Mark 10:9</cite>
   </blockquote>
 </section>
@@ -519,7 +561,7 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
             <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
           </svg>
         </div>
-        <span class="tl-time">14:00</span>
+        <span class="tl-time">12:30</span>
         <span class="tl-event">Guests Arrive</span>
       </div>
       <div class="tl-item fi">
@@ -528,7 +570,7 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
             <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
           </svg>
         </div>
-        <span class="tl-time">15:00</span>
+        <span class="tl-time">13:00</span>
         <span class="tl-event">Wedding Ceremony</span>
       </div>
       <div class="tl-item fi">
@@ -538,8 +580,8 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
             <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
           </svg>
         </div>
-        <span class="tl-time">16:30</span>
-        <span class="tl-event">Drinks &amp; Reception</span>
+        <span class="tl-time">14:30</span>
+        <span class="tl-event">Reception</span>
       </div>
       <div class="tl-item fi">
         <div class="tl-icon">
@@ -551,7 +593,7 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
             <line x1="14" y1="1" x2="14" y2="4"/>
           </svg>
         </div>
-        <span class="tl-time">18:00</span>
+        <span class="tl-time">16:00</span>
         <span class="tl-event">Dinner &amp; Celebrations</span>
       </div>
     </div>
@@ -604,12 +646,12 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
     <span class="tag">What to wear</span>
     <p class="sec-script">Dress Code</p>
     <div class="floral-rule">✦ ✦ ✦</div>
-    <div class="swatches">
+    <!-- <div class="swatches">
       <div class="sw" style="background:#f2c4ce" title="Baby Pink"></div>
       <div class="sw" style="background:#b8d8e8" title="Baby Blue"></div>
       <div class="sw" style="background:#fdfaf8" title="Cream"></div>
       <div class="sw" style="background:#9a8878" title="Warm Grey"></div>
-    </div>
+    </div> -->
     <p class="dc-note">
       Formal / Wedding Party Attire<br/>
       <span style="font-size:.9rem">Please dress in keeping with the elegance of the occasion.</span>
@@ -627,6 +669,9 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
     </div>
     <div class="fam-grid">
       <div class="fam-card fi">
+        <div class="fam-photo-wrap">
+          <img src = "JohnParents.jpeg"alt="John's Parents" class="fam-photo"/>
+        </div>  
         <h4>John's Family</h4>
         <div class="fam-member">
           <span class="fam-role">Father</span>
@@ -638,6 +683,9 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
         </div>
       </div>
       <div class="fam-card fi">
+        <div class="fam-photo-wrap">
+          <img src = "PrincilaParents.jpeg" alt="Princila's Parents" class="fam-photo"/>
+        </div> 
         <h4>Princila's Family</h4>
         <div class="fam-member">
           <span class="fam-role">Father</span>
@@ -662,12 +710,20 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
     </div>
     <div class="party-grid">
       <div class="party-col grooms fi">
-        <h4>Groomsmen</h4>
-        <p>Names coming soon</p>
+        <div class="party-photo-wrap">
+          <!-- Replace with: <img src="YOUR_PHOTO" alt="Saman Jimba" class="party-photo"/> -->
+          <div class="party-photo-placeholder">🤵<br/>Saman<br/>Jimba</div>
+        </div>
+        <h4>Best Man</h4>
+        <p>Saman Jimba</p>
       </div>
       <div class="party-col brides fi">
-        <h4>Bridesmaids</h4>
-        <p>Names coming soon</p>
+        <div class="party-photo-wrap">
+          <!-- Replace with: <img src="YOUR_PHOTO" alt="Esther Saru" class="party-photo"/> -->
+          <div class="party-photo-placeholder">💐<br/>Esther<br/>Saru</div>
+        </div>
+        <h4>Maid of Honour</h4>
+        <p>Esther Saru</p>
       </div>
     </div>
   </div>
@@ -688,13 +744,29 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
       <p class="sec-script">Gentle Reminder</p>
       <div class="floral-rule">✦ ✦ ✦</div>
     </div>
-    <ul class="rem-list fi">
-      <li>Please be on time and presentable for the ceremony.</li>
-      <li>Snap &amp; Share — capture the love and share your photos with us.</li>
-      <li>Kindly silence your phones during the ceremony.</li>
-      <li>Please be seated before the ceremony begins.</li>
-      <li>Most importantly — come ready to celebrate with your whole heart!</li>
-    </ul>
+    <div class="rem-cols fi">
+      <div>
+        <ul class="rem-list fi">
+          <li>Please be on time and presentable for the ceremony.</li>
+          <li>Snap &amp; Share — capture the love and share your photos with us.</li>
+          <li>Kindly silence your phones during the ceremony.</li>
+          <li>Please be seated before the ceremony begins.</li>
+          <li>Most importantly — come ready to celebrate with your whole heart!</li>
+        </ul>
+      </div>
+      <div class="rem-divider"></div>
+      <ul class="rem-list fi">
+          <li>कृपया कार्यक्रममा समयमै आइपुग्नुहोस् र आकर्षक तथा उपयुक्त पहिरनमा उपस्थित हुनुहोस्।</li>
+          <li>⁠खुसीका सुन्दर क्षणहरू फोटोमा कैद गर्नुहोस् र हामीसँग पनि साझा गर्नुहोस्।</li>
+          <li>कार्यक्रम चलिरहँदा आफ्नो मोबाइल फोनलाई साइलेन्ट मोड मा राखिदिनुहोस्।</li>
+          <li>समारोह सुरु हुनुअघि नै आफ्नो सिटमा बसिसक्नुहोस्।</li>
+          <li>अनि सबैभन्दा महत्त्वपूर्ण कुरा — भरपुर उत्साह र खुसीका साथ हाम्रो विशेष दिनलाई अझ यादगार बनाउन साथ दिनुहोस्!</li>
+        </ul>
+      </div>
+    </div>
+    
+    
+
     <p class="rem-bless fi">Hope you can make it and God bless!</p>
     <p class="rem-sign fi">John &amp; Princila</p>
   </div>
@@ -712,14 +784,16 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
   <div class="gift-inner">
     <div class="tc fi">
       <span class="tag">Gift information</span>
-      <p class="sec-script">No Gift Needed</p>
+      <p class="sec-script">No Boxed Gifts</p>
     </div>
     <div class="gift-icon fi">🎁</div>
+    
     <p class="gift-msg fi">
-      "Your presence is the greatest gift you could ever give us.<br/>
-      No presents, please — just bring your love and your smiles."
+      "We kindly request no boxed gifts. <br/> Should you wish to honour us with a gift, a monetary contribution would be<br/>
+     sincerely appreciated."
     </p>
-    <p class="gift-sub fi">John &amp; Princila kindly request no gifts</p>
+    <p class = "git-msg fi">कृपया खादा तथा बक्सबन्द उपहारहरू नल्याइदिनुहुन विनम्र अनुरोध गर्दछौं</p>
+    <p class="gift-sub fi">We are grateful for your love and support as we celebrate our special day</p>
   </div>
 </section>
 
@@ -764,7 +838,7 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
           <option value="4">4 guests</option>
         </select>
       </div>
-      <textarea id="msg" placeholder="Dietary restrictions, allergies, or a note of love…"></textarea>
+      <textarea id="msg" placeholder="Any Notes......"></textarea>
       <button type="submit" class="rsvp-btn">Send RSVP</button>
     </form>
   </div>
@@ -774,6 +848,7 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
 <footer>
   <span class="f-names">John &amp; Princila</span>
   <p>25 August 2026 &nbsp;·&nbsp; Park Wood Golf Club, Chestnut Ave, Tatsfield, Westerham TN16 2EJ</p>
+  <p> John  07824 969567 &nbsp;·&nbsp; Purna  07837 053656</p>
   <p class="f-verse">"What God has joined together, let no one separate." — Mark 10:9</p>
 </footer>
 
