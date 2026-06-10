@@ -174,7 +174,13 @@ nav{
   color:var(--text);line-height:1.8;
   max-width:640px;margin:0 auto;
 }
-#verse cite{display:block;margin-top:.8rem;font-style:normal;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-dk)}
+#verse cite{
+  display:block;
+  margin-top:.8rem;font-style:normal;
+  font-size:.90rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--blue-dk);
+  font-weight: 700;
+}
 
 /* ── CALENDAR ── */
 #date{padding:5rem 2rem;background:var(--cream);text-align:center}
@@ -211,7 +217,14 @@ nav{
   text-decoration:none;transition:all .2s;
 }
 .map-btn:hover{background:var(--pink-lt);border-color:var(--pink-dk);color:var(--pink-dk)}
-.venue-art-wrap{opacity:.55}
+/* .venue-art-wrap{opacity:.55} */
+.venue-art-wrap{
+  border-radius:14px;overflow:hidden;
+  box-shadow:0 8px 30px rgba(122,176,200,.25);
+  /* border:3px solid var(--blue-lt); */
+}
+.venue-photo{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:16/10}
+
 
 /* ── TIMELINE ── */
 #schedule{padding:6rem 2rem;background:linear-gradient(160deg,var(--pink-lt) 0%,#fce9ec 50%,var(--blue-lt) 100%)}
@@ -295,7 +308,7 @@ nav{
   align-items:center;justify-content:center;gap:.3rem;
   color:var(--muted);font-size:.65rem;text-align:center;padding:.4rem;
   line-height:1.4;
-}  
+}
 .party-col.grooms{background:var(--blue-lt)}
 .party-col.brides{background:var(--pink-lt)}
 .party-col h4{font-family:var(--serif);font-size:1rem;letter-spacing:.12em;text-transform:uppercase;font-weight:400;margin-bottom:.8rem;padding-bottom:.5rem}
@@ -511,7 +524,7 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
       <span class="tag">Where to find us</span>
       <p class="sec-script" style="text-align:left">Location</p>
       <div class="floral-rule" style="text-align:left;margin-left:0">✦ ✦ ✦</div>
-      <p class="venue-name fi" style="font-family:var(--serif);font-size:1.15rem;color:var(--text);font-weight:500;margin-bottom:.3rem">Park Wood Golf Club by Orida</p>
+      <p class="venue-name fi" style="font-family:var(--serif);font-size:1.8rem;color:var(--text);font-weight:500;margin-bottom:.3rem">Park Wood Golf Club by Orida</p>
       <p class="venue-address">
         Chestnut Ave<br/>
         Tatsfield, Westerham<br/>
@@ -522,7 +535,8 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
       </a>
     </div>
     <div class="venue-art-wrap fi">
-      <svg viewBox="0 0 460 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <img src="venue.jpeg" class="venue-photo"/>
+      <!-- <svg viewBox="0 0 460 200" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="90" y="80" width="280" height="110" stroke="#9a8878" stroke-width="1.5" fill="none"/>
         <path d="M82 80 L230 20 L378 80" stroke="#9a8878" stroke-width="1.5" fill="none"/>
         <rect x="200" y="140" width="60" height="50" rx="30" stroke="#9a8878" stroke-width="1.2" fill="none"/>
@@ -546,7 +560,7 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
         <ellipse cx="80" cy="158" rx="14" ry="18" stroke="#b5c5a5" stroke-width="1.2" fill="none"/>
         <line x1="380" y1="190" x2="380" y2="165" stroke="#b5c5a5" stroke-width="1.4"/>
         <ellipse cx="380" cy="158" rx="14" ry="18" stroke="#b5c5a5" stroke-width="1.2" fill="none"/>
-      </svg>
+      </svg> -->
     </div>
   </div>
 </section>
@@ -719,7 +733,7 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
     <div class="party-grid">
       <div class="party-col grooms fi">
         <div class="party-photo-wrap">
-          <!-- <img src="Bestman" alt="Saman Jimba" class="party-photo"/> -->
+         <img src="Bestman.jpeg" alt="Saman Jimba" class="party-photo"/>
           <div class="party-photo-placeholder">🤵<br/>Saman<br/>Jimba</div>
         </div>
         <h4>Best Man</h4>
@@ -869,7 +883,7 @@ document.querySelectorAll('.fi').forEach(el => observer.observe(el));
 const form = document.getElementById('rsvp-form');
 const thanks = document.getElementById('rsvp-thanks');
 const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbymnu5ROB6UC_zMiaNIQuQvHS2_pcK7i6vZZjMv6fNXXmle8t_UKiFHcvcXeytcsb4c/exec";
-  
+
 form.addEventListener('submit', e => {
   e.preventDefault();
   const name = document.getElementById('name').value.trim();
@@ -910,7 +924,13 @@ form.addEventListener('submit', e => {
     submitBtn.disabled = false;
     submitBtn.textContent = 'Send RSVP';
     alert('Sorry, something went wrong sending your RSVP. Please try again.');
-  
+  });
+
+  // console.log({ name, email, attendance: att,
+  //   guests: document.getElementById('guests').value,
+  //   message: document.getElementById('msg').value });
+  // form.style.display = 'none';
+  // thanks.style.display = 'block';
 });
 
 document.querySelectorAll('.nav-links a').forEach(a => {
