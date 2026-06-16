@@ -573,7 +573,7 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
       </a>
     </div>
     <div class="venue-art-wrap fi">
-      <img src="Venue.jpeg" class="venue-photo"/>
+      <img src="venue.jpeg" class="venue-photo"/>
       <!-- <svg viewBox="0 0 460 200" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="90" y="80" width="280" height="110" stroke="#9a8878" stroke-width="1.5" fill="none"/>
         <path d="M82 80 L230 20 L378 80" stroke="#9a8878" stroke-width="1.5" fill="none"/>
@@ -797,7 +797,7 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
 </div>
 
 <!-- ═══ GENTLE REMINDER ═══ -->
-<section id="reminder">
+<!-- <section id="reminder">
   <div class="rem-inner">
     <div class="tc fi">
       <span class="tag">A note from us</span>
@@ -830,7 +830,7 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
     <p class="rem-bless fi">Hope you can make it and God bless!</p>
     <p class="rem-sign fi">John &amp; Princila</p>
   </div>
-</section>
+</section> -->
 
 <!-- ═══ TORN DIVIDER ═══ -->
 <div class="torn" style="transform:scaleX(-1)">
@@ -920,7 +920,7 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
         </div>
         <p class="contact-name">John Garbuja</p>
         <p class="contact-role">Groom</p>
-        <a class="contact-link" href="tel:+447824969567">+44 7824 969567</a>
+        <a class="contact-link" href="tel:+440000000000">+44 7824 969567</a>
       </div>
       <div class="contact-card fi">
         <div class="contact-icon">
@@ -930,7 +930,7 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
         </div>
         <p class="contact-name">Princila Gharti</p>
         <p class="contact-role">Bride</p>
-        <a class="contact-link" href="tel:+447501893116">+44 7501 893116</a>
+        <a class="contact-link" href="tel:+440000000000">+44 7837 053656</a>
       </div>
       <!-- <div class="contact-card fi">
         <div class="contact-icon">
@@ -955,7 +955,7 @@ footer .f-verse{font-family:var(--serif);font-style:italic;color:var(--blue-dk);
   <p class="f-verse">"What God has joined together, let no one separate." — Mark 10:9</p>
 </footer>
 
-<script>
+<!-- <script>
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); observer.unobserve(e.target); } });
 }, { threshold: 0.12 });
@@ -1012,6 +1012,72 @@ form.addEventListener('submit', e => {
   //   message: document.getElementById('msg').value });
   // form.style.display = 'none';
   // thanks.style.display = 'block';
+});
+
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
+}); -->
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fi').forEach(el => observer.observe(el));
+
+const form = document.getElementById('rsvp-form');
+const thanks = document.getElementById('rsvp-thanks');
+
+// 👉 Paste your Web3Forms Access Key here (get one free at https://web3forms.com — no signup, key emailed instantly)
+const WEB3FORMS_KEY = '8f4b7f16-59ee-4149-aeab-b380ad3b9b14';
+
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const att = document.getElementById('att').value;
+  if (!name || !email || !att) {
+    const m = [];
+    if (!name) m.push('Full Name');
+    if (!email) m.push('Email');
+    if (!att) m.push('Attendance');
+    alert('Please complete: ' + m.join(', '));
+    return;
+  }
+
+  const guests = document.getElementById('guests').value;
+  const message = document.getElementById('msg').value;
+
+  const submitBtn = form.querySelector('.rsvp-btn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending…';
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify({
+      access_key: WEB3FORMS_KEY,
+      subject: `Wedding RSVP from ${name}`,
+      from_name: 'Wedding Website RSVP',
+      name,
+      email,
+      attendance: att,
+      guests,
+      message
+    })
+  })
+  .then(r => r.json())
+  .then(result => {
+    if (result.success) {
+      form.style.display = 'none';
+      thanks.style.display = 'block';
+    } else {
+      throw new Error(result.message || 'Submission failed');
+    }
+  })
+  .catch(() => {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send RSVP';
+    alert('Sorry, something went wrong sending your RSVP. Please try again.');
+  });
 });
 
 document.querySelectorAll('.nav-links a').forEach(a => {
